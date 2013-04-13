@@ -1,0 +1,97 @@
+<% if (@NroRegTesis == 1)   %>
+  <table align="center" width="100%" border="1" cellspacing="0" cellpadding="0" bgcolor="#fffbd3">
+    <tr>
+      <td>
+        <h3 align="center">TESIS: <%= @tesi.asunto %> <br/><br/> LISTADO DE COMPROMISOS</h3>
+      </td>
+  </tr>
+  </table>
+<% end  %>
+<br/>
+  <div class="container">
+    
+          <% @tesis.each do |t| %>
+            <div class="CSSTableGenerator">
+            <table>
+              <tr>
+                <td>TESIS</td><td><%=  t.nombreTesis %></td>
+              </tr>
+              <tr>
+                <td colspan="2">COMPROMISOS</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                <table>
+                  <tr>
+                  <td width="10%">Asunto</td>
+                  <td width="20%">Descripcion</td>
+                  <td width="10%">Fecha Limite</td>
+                  <td width="20%">Responsables</td>
+                  <td width="10%">Estado</td>
+                  <td width="20%" colspan="3">Acciones</td>
+                </tr>
+
+                  <% vec_Compromiso = Compromiso.find_by_sql('SELECT DISTINCT C.id,
+                                                                     C.asunto,
+                                                                     C.descripcionCompromiso,
+                                                                     C.fechaLimite,
+                                                                     C.finalizado
+                                                                FROM compromisos C
+                                                                    ,estudiantes E
+                                                                    ,compromisos_estudiantes CE
+                                                               WHERE E.id = CE.estudiante_id
+                                                                 AND C.id = CE.compromiso_id
+                                                                 AND E.tesis_id = ' + t.id.to_s ) %>
+                      <% for i in 0...vec_Compromiso.length%>
+                        <tr>
+                          <td><%=  vec_Compromiso[i][:asunto]%></td>
+                          <td><%=  vec_Compromiso[i][:descripcionCompromiso]%></td>
+                          <td><%=  vec_Compromiso[i][:fechaLimite]%></td>
+                          <td>
+                            <% vec_Responsable = Estudiante.find_by_sql('SELECT E.codigoEstudiante,
+                                                                                E.nombreEstudiante
+                                                                           FROM estudiantes E
+                                                                               ,compromisos_estudiantes CE
+                                                               WHERE E.id = CE.estudiante_id
+                                                                 AND CE.compromiso_id = ' + vec_Compromiso[i][:id].to_s) %>
+
+                            <% for j in 0...vec_Responsable.length%>
+                              <%=  vec_Responsable[j][:codigoEstudiante] %><%=" - "%> <%= vec_Responsable[j][:nombreEstudiante] %><%="<br/>"%>
+                            <% end %>
+                          </td>
+                          <td>
+                          <% if(vec_Compromiso[i][:finalizado] = 0) %>
+                            <% if(vec_Compromiso[i][:fechaLimite] >= Date.today) %>
+                              <%="PENDIENTE"%>
+                            <% else %>
+                              <%="VENCIDO"%>
+                            <% end %>
+                          <% else %>
+                            <%="FINALIZADO"%>
+                          <% end %>
+                          </td>
+                          <% compromiso = vec_Compromiso[i] %>
+                        <td><%= link_to 'Consultar', compromiso %></td>
+                        <td><%= link_to 'Actualizar', edit_compromiso_path(compromiso) %></td>
+                        <td><%= link_to 'Eliminar', compromiso, :confirm => '¿Está seguro de eliminar este compromiso?', :method => :delete %></td>
+                        </tr>
+                      <%end%>
+             </table>
+                </td>
+              </tr>
+
+            <tr>
+              <td colspan="2">
+              <%= link_to 'Crear compromiso', new_compromiso_path + "?tesisId=#{t.id}"%>
+                &nbsp;&nbsp;&nbsp;
+              <%=  link_to 'Regresar', teses_path %>
+                </td>
+            </tr>
+            </tr>
+            </table>
+            </div>
+            <br></br>
+
+         <%end%>
+    
+  </div>

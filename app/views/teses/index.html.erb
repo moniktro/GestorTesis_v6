@@ -1,0 +1,45 @@
+<h1>TESIS</h1>
+<br>
+<%= link_to 'Nueva Tesis', new_tese_path %>
+</br>
+<br>
+<div class="CSSTableGenerator">
+<table border="1" cellpadding="10">
+  <tr>
+    <td width="20%"> Tesis </td>
+    <td width="10%"> Area <br>Investigación </br></td>
+    <!--td> Descripcion </td-->
+    <td width="15%"> Estudiantes </td>
+    <td width="5%"> Estado </td>
+    <td width="10%"> Fecha Inicio </td>
+    <td width="10%"> Fecha Fin </td>
+    <td width="30%" colspan="4"> Acciones </td>
+  </tr>
+<% @teses.each do |tese| %>
+  <tr>
+    <td><%=  tese.nombreTesis %></td>
+    <td><%= tese.areaInvestigacion %></td>
+    <% vec_estudiante = Estudiante.find(:all, :conditions => [ "tesis_id = ?", tese.id])%>
+    <%estudiantes=""%>
+    <%  for i in 0...vec_estudiante.length%>
+	<% estudiantes=estudiantes + vec_estudiante[i][:nombreEstudiante] + " "%>
+    <%end%>
+    <td><%= estudiantes %></td>
+    <td><%if(tese.finalizado == false)%>
+            <%="Activa"%>
+          <%else%>
+            <%="Finalizada"%>
+        <%end%> </td>
+    <td><%= tese.fechaInicio %></td>
+    <td><%= tese.fechaFin %></td>
+    <td><%= link_to 'Modificar', edit_tese_path(tese) %></td>
+    <td><%= link_to 'Eliminar', tese, :confirm => 'Esta seguro de borrar la tesis?', :method => :delete %></td>
+    <td><%= link_to 'Crear compromiso', new_compromiso_path + "?tesisId=#{tese.id}"%></td>
+    <td><%= link_to 'Crear Reunion', new_reunion_path %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br/>
+
+

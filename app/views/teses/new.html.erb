@@ -1,0 +1,49 @@
+<h1>Nueva Tesis</h1>
+
+<%= form_for(@tese) do |f| %>
+  <% if @tese.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tese.errors.count, "error") %> prohibited this tese from being saved:</h2>
+
+      <ul>
+      <% @tese.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Tesis %><br />
+    <%= f.text_field :nombreTesis, "size" => 100 %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Area Investigación" %><br />
+    <%= f.text_field :areaInvestigacion, "size" => 100 %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Descripción:" %><br />
+    <%= f.text_area :descripcionTesis,  {:class=>"text-input", :size=>"100", :max=>"600"}  %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Fecha Inicio:" %>
+    <%= f.date_select :fechaInicio, :order =>[:day, :month,:year] %>
+  </div>
+  <div class="field">
+    <%= f.label :"Fecha Fin: " %>
+    <%= f.date_select :fechaFin,  :order =>[:day, :month,:year] %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Tesis Finalizada" %>
+    <%= f.check_box :finalizado %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :profesor_id %><br />
+    <%= f.number_field :profesor_id %><br /><br />
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar'%>
+  </div>
+<%end%>
+<br /><br />
+<%= link_to 'Menu Tesis', teses_path %>

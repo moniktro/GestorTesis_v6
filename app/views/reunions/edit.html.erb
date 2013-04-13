@@ -1,0 +1,54 @@
+<h1>Modificar Reunion</h1>
+<br />
+
+<%= form_for(@reunion) do |f| %>
+  <% if @reunion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reunion.errors.count, "error") %> prohibited this reunion from being saved:</h2>
+
+      <ul>
+      <% @reunion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :Asunto %><br />
+    <%= f.text_field :asunto_reu %>
+  </p>
+  <p>
+    <%= f.label :Fecha %><br />
+    <%= f.datetime_select :fecha_reu %>
+  </p>
+  <p>
+    <%= f.label :"Duración" %><br />
+    <%= f.time_select :duracion_reu %>
+  </p>
+  <p>
+    <%= f.label :Lugar %><br />
+    <%= f.text_field :lugar %>
+  </p>
+
+  <p>
+    <%= f.label :Estudiante %><br />
+    <%= f.text_field :estudiantes_id, "size" => 5 %>
+    <% vec_estudiante = Estudiante.find(:all, :conditions => [ "id = ?", @reunion.estudiantes_id ])%>
+    <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
+    <%=h nombre_estudiante %>
+  </p>
+  <p>
+    <%= f.label :Profesor %><br />
+    <%= f.text_field :profesors_id, "size" => 5 %>
+    <% vec_profesor = Profesor.find(:all, :conditions => [ "id = ?", @reunion.profesors_id ])%>
+    <% nombre_profesor=vec_profesor[0][:nombre] + " "%>
+    <%=h nombre_profesor %>
+  </p>
+  <p>
+    <%= f.submit 'Actualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Mostrar', @reunion %> |
+<%= link_to 'Menu Reuniones', reunions_path %>

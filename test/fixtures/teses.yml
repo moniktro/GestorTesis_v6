@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nombreTesis: MyString
+  areaInvestigacion: MyString
+  fechaInicio: 2013-04-13
+  fechaFin: 2013-04-13
+  descripcionTesis: MyText
+  finalizado: false
+  profesor_id: 1
+
+two:
+  nombreTesis: MyString
+  areaInvestigacion: MyString
+  fechaInicio: 2013-04-13
+  fechaFin: 2013-04-13
+  descripcionTesis: MyText
+  finalizado: false
+  profesor_id: 1

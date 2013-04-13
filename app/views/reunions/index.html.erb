@@ -1,0 +1,37 @@
+<h1>Reuniones</h1>
+<br>
+<%= link_to 'Programar Reunion', new_reunion_path %>
+</br>
+<br>
+<div class="CSSTableGenerator">
+<table border="1" cellpadding="10">
+  <tr>
+    <th> Asunto </th>
+    <th> Fecha </th>
+    <th> Duración </th>
+    <th> Lugar </th>
+    <th> Profesor </th>
+    <th> Estudiante </th>
+    <th> Modificar </th>
+    <th> Eliminar </th>
+  </tr>
+<% @reunions.each do |reunion| %>
+  <tr>
+    <td><%= reunion.asunto_reu %></td>
+    <td><%= reunion.fecha_reu %></td>
+    <td><%= reunion.duracion_reu %></td>
+    <td><%= reunion.lugar %></td>
+    <% temp_profesor = Profesor.find(:all, :conditions => [ "id = ?", reunion.profesors_id])%>
+    <% nombre_profesor=temp_profesor[0][:nombre] + " "%>
+    <td><%= nombre_profesor %></td>
+    <% vec_estudiante = Estudiante.find(:all, :conditions => [ "id = ?", reunion.estudiantes_id])%>
+    <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
+    <td><%= nombre_estudiante %></td>
+    <td><%= link_to 'Modificar', edit_reunion_path(reunion) %></td>
+    <td><%= link_to 'Eliminar', reunion, :confirm => 'Esta seguro de eliminar la reunión?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+</br>
+

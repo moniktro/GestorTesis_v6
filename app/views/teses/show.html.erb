@@ -1,0 +1,42 @@
+<p>
+  <b>Tesis:</b>
+  <%= @tese.nombreTesis %>
+</p>
+
+<p>
+  <b>Area Investigación:</b>
+  <%= @tese.areaInvestigacion %>
+</p>
+
+<p>
+  <b>Fecha inicio:</b>
+  <%= @tese.fechaInicio %>
+</p>
+
+<p>
+  <b>Fecha fin:</b>
+  <%= @tese.fechaFin %>
+</p>
+
+<p>
+  <b>Descripciontesis:</b>
+  <%= @tese.descripcionTesis %>
+</p>
+
+<p>
+  <b>Tesis Finalizada:</b>
+  <%if(@tese.finalizado == false)%>
+            <%="Activa"%>
+          <%else%>
+            <%="Finalizada"%>
+        <%end%>
+</p>
+
+<p>
+  <b>Profesor:</b>
+  <%= @tese.profesor_id %>
+</p>
+
+
+<%= link_to 'Editar', edit_tese_path(@tese) %> |
+<%= link_to 'Menu Tesis', teses_path %>

@@ -1,0 +1,47 @@
+<table align="center" width="100%" border="1" cellspacing="0" cellpadding="0" bgcolor="#bf5f00">
+  <tr>
+    <td>
+<h3 style="color: white;" align="center">TESIS: <%= @tesis.nombreTesis %> <br/><br/> CONSULTA COMPROMISO</h3>
+    </td>
+</tr>
+</table>
+<br/>
+<div class="container">
+<div class="CSSTableGenerator">
+<table align="center" width="100%" border="1" cellspacing="0">
+  <tr>
+    <td><strong>Asunto:</strong></td>
+    <td> <%=h @compromiso.asunto %></td>
+  </tr>
+  <tr>
+    <td><strong>Descripcion:</strong></td>
+    <td><%=h @compromiso.descripcionCompromiso %></td>
+  </tr>
+  <tr>
+    <td><strong>Fechalimite:</strong></td>
+    <td><%=h @compromiso.fechaLimite %></td>
+  </tr>
+  <tr>
+    <td><strong>Estado</strong></td>
+    <td>
+      <%if(@compromiso.finalizado == false or @compromiso.finalizado == nil)%>
+            <%="ACTIVO"%>
+        <%else%>
+            <%="FINALIZADO"%>
+        <%end%>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Reponsable(s):</strong></td>
+    <td>
+      <% @estudiantes.each do |est| %>
+        <%=h est.codigoEstudiante %><%=" - "%><%=h est.nombreEstudiante %>
+        <br>
+      <%end%>
+    </td>
+</tr>
+</table>
+</div>
+</div>
+<%= link_to 'Actualizar', edit_compromiso_path(@compromiso) %> |
+<%= link_to 'Regresar', compromisos_path + "?tesisId=#{@tesis.id}" %>

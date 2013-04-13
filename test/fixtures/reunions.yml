@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  asunto_reu: MyString
+  fecha_reu: 2013-04-13 12:06:36
+  duracion_reu: 2013-04-13 12:06:36
+  lugar: MyString
+  estudiantes_id: 1
+  profesors_id: 1
+  teses_id: 1
+
+two:
+  asunto_reu: MyString
+  fecha_reu: 2013-04-13 12:06:36
+  duracion_reu: 2013-04-13 12:06:36
+  lugar: MyString
+  estudiantes_id: 1
+  profesors_id: 1
+  teses_id: 1

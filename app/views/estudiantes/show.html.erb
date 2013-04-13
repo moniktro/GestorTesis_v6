@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombreestudiante:</b>
+  <%= @estudiante.nombreEstudiante %>
+</p>
+
+<p>
+  <b>Codigoestudiante:</b>
+  <%= @estudiante.codigoEstudiante %>
+</p>
+
+<p>
+  <b>Correoelectronico:</b>
+  <%= @estudiante.correoElectronico %>
+</p>
+
+<p>
+  <b>Disponibilidadhoraria:</b>
+  <%= @estudiante.disponibilidadHoraria %>
+</p>
+
+<p>
+  <b>Tesis:</b>
+  <%= @estudiante.tesis_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_estudiante_path(@estudiante) %> |
+<%= link_to 'Back', estudiantes_path %>

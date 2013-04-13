@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nombreEstudiante: MyString
+  codigoEstudiante: MyString
+  correoElectronico: MyString
+  disponibilidadHoraria: MyString
+  tesis_id: 1
+
+two:
+  nombreEstudiante: MyString
+  codigoEstudiante: MyString
+  correoElectronico: MyString
+  disponibilidadHoraria: MyString
+  tesis_id: 1

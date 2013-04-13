@@ -1,0 +1,36 @@
+<p>
+  <b>Asunto:</b>
+  <%= @reunion.asunto_reu %>
+</p>
+
+<p>
+  <b>Fecha y Hora:</b>
+  <%= @reunion.fecha_reu %>
+</p>
+
+<p>
+  <b>Duración:</b>
+  <%= @reunion.duracion_reu %>
+</p>
+
+<p>
+  <b>Lugar:</b>
+  <%= @reunion.lugar %>
+</p>
+
+<p>
+  <b>Estudiante:</b>
+  <% vec_estudiante = Estudiante.find(:all, :conditions => [ "id = ?", @reunion.estudiantes_id ])%>
+  <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
+  <%= nombre_estudiante %>
+</p>
+
+<p>
+  <b>Profesor:</b>
+    <% vec_profesor = Profesor.find(:all, :conditions => [ "id = ?", @reunion.profesors_id ])%>
+    <% nombre_profesor=vec_profesor[0][:nombre] + " "%>
+    <%= nombre_profesor %>  
+</p>
+
+<%= link_to 'Modificar', edit_reunion_path(@reunion) %> |
+<%= link_to 'Menu Reuniones', reunions_path %>

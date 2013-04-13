@@ -1,0 +1,49 @@
+<h1>Nueva Reunion</h1>
+
+<%= form_for(@reunion) do |f| %>
+  <% if @reunion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reunion.errors.count, "error") %> prohibited this reunion from being saved:</h2>
+
+      <ul>
+      <% @reunion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :"Asunto "%><br />
+    <%= f.text_field :asunto_reu %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Fecha y Hora " %><br />
+    <%= f.datetime_select :fecha_reu, :order =>[:day, :month,:year]  %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Duración " %><br />
+    <%= f.time_select :duracion_reu %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :Lugar %><br />
+    <%= f.text_field :lugar %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Estudiante "%><br />
+    <%= f.text_field :estudiantes_id %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :"Profesor "%><br />
+    <%= f.text_field :profesors_id %><br /><br />
+  </div>
+  <div class="field">
+    <%= f.label :teses_id %><br />
+    <%= f.number_field :teses_id %><br /><br />
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar'%>
+  </div>
+<% end %>
+
+<%= link_to 'Menu Reuniones', reunions_path %>
