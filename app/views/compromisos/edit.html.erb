@@ -1,60 +1,51 @@
-<table align="center" width="100%" border="1" cellspacing="0" cellpadding="0" bgcolor="#fffbd3">
-  <tr>
-    <td>
-<h3 align="center">TESIS: <%= @tesis.nombreTesis %> <br/><br/> ACTUALIZAR COMPROMISO</h3>
-    </td>
-</tr>
-</table>
-<br/>
-<div class="container">
-<div class="CSSTableGenerator">
-<% form_for(@compromiso) do |f| %>
-    <%= f.error_messages %>
+<h1>Editar compromiso</h1>
 
-<table align="center" width="100%" border="1" cellspacing="0">
-  <tr>
-    <td width="10%"><%= f.label :asunto %></td>
-    <td width="40%"><%= f.text_field :asunto  %></td>
-    <td width="10%">&nbsp;<%= f.label :fechaLimite %></td>
-    <td width="40%">&nbsp;<%= f.date_select :fechaLimite %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :Descripcion %></td>
-    <td colspan="3"><%= f.text_area :descripcionCompromiso, :size => "99x5" %></td>
-  </tr>
-  <tr>
-    <td>Asignar Estudiantes</td>
-    <td colspan="3">
-      <br/>
-      <div class="CSSTableGenerator">
-      <table align="center" border="1" width="80%" cellpadding="0" cellspacing="0">
+<%= form_for(@compromiso) do |f| %>
+  <% if @compromiso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@compromiso.errors.count, "error") %> no es posible grabar el compromiso:</h2>
+
+      <ul>
+      <% @compromiso.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :asunto %><br />
+    <%= f.text_field :asunto %>
+  </div>
+
+  <div class="field">
+   &nbsp;<%= f.label :fechaLimite %><br />
+    <%= f.date_select :fechaLimite %>
+  </div>
+  <div class="field">
+    <%= f.label :Descripcion %><br />
+    <%= f.text_area :descripcionCompromiso, :size => "99x5" %>
+  </div>
+
+ <div class="field">
+    <p align="center"><strong>Responsables</strong></p>
+ <table align="left" border="1" width="80%" cellpadding="0" cellspacing="0">
         <tr>
-          <!--td>SELECCION</td-->
           <td>CODIGO</td>
           <td>NOMBRE</td>
         </tr>
 
-        <% f.fields_for :estudiantes do |ef|  %>
-          <% @estudiantes.each do |estudiante| %>
-            <tr>
-              <!--td><%#= check_box_tag 'estudiante_ids[]', estudiante.id %></td-->
-              <td><%=h estudiante.codigoEstudiante %></td>
-              <td><%=h estudiante.nombreEstudiante %> </td>
-            </tr>
-            <% end %>
-        <% end %>
+        <% @estudiantes.each do |estudiante| %>
+          <tr>
+            <td><%=h estudiante.codigoEstudiante %></td>
+            <td><%=h estudiante.nombreEstudiante %> </td>
+          </tr>
+      <% end %>
     </table>
-      </div>
-      <br/>
-    </td>
-  </tr>
-</table>
-</div>
-</div>
-  <p align="center">
-    <%= f.submit 'Actualizar' %>
-    <%= link_to 'Consultar', @compromiso %>
+  </div>
+<br/>
+  <div class="actions">
+    <%= f.submit 'Guardar' %>
     <%= link_to 'Regresar', compromisos_path + "?tesisId=#{@tesis.id}" %>
-  </p>
+  </div>
 <% end %>
-

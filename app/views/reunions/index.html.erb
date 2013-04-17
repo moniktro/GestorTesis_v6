@@ -18,8 +18,8 @@
 <% @reunions.each do |reunion| %>
   <tr>
     <td><%= reunion.asunto_reu %></td>
-    <td><%= reunion.fecha_reu %></td>
-    <td><%= reunion.duracion_reu %></td>
+    <td><%= reunion.fecha_reu.strftime("%d-%b-%Y [ %I:%M %p ]") %></td>
+    <td><%= reunion.duracion_reu.strftime("%I:%M ( hh:mi )") %></td>
     <td><%= reunion.lugar %></td>
     <% temp_profesor = Profesor.find(:all, :conditions => [ "id = ?", reunion.profesors_id])%>
     <% nombre_profesor=temp_profesor[0][:nombre] + " "%>
