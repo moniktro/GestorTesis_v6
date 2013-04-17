@@ -30,3 +30,15 @@ Then(/^la base de datos debe contener dos veces la reunion "(.*?)"$/) do |arg1, 
   assert_not_nil(reunion)
   assert_equal(2, reunion.size)
 end
+
+Then(/^la base de datos debe contener el compromiso "(.*?)"$/) do |arg1|
+  compromiso = Compromiso.find_by_asunto(arg1)
+  assert_not_nil(compromiso)
+  assert_equal(arg1, compromiso.asunto_reu)
+end
+
+Then(/^la base de datos debe contener dos veces el compromiso "(.*?)"$/) do |arg1|
+  compromiso = Compromiso.find_all_by_asunto(arg1)
+  assert_not_nil(compromiso)
+  assert_equal(2, compromiso.size)
+end

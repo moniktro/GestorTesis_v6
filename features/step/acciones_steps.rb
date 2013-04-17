@@ -7,3 +7,7 @@ end
 When(/^presiono el boton para crear la reunion "(.*?)"$/) do |arg1|
   click_button(arg1)
 end
+
+When(/^presiono el boton para crear el compromiso "(.*?)"$/) do |arg1|
+  click_button(arg1)
+end

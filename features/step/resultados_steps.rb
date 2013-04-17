@@ -7,3 +7,7 @@ end
 Then(/^debe verse la pantalla con lo siguiente para la reunion "(.*?)"$/) do |arg1|
   has_text?(arg1)
 end
+
+Then(/^debe verse la pantalla con lo siguiente para el compromiso "(.*?)"$/) do |arg1|
+  has_text?(arg1)
+end
