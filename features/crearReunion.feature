@@ -22,7 +22,7 @@ Feature: Crear una reunion
 
 Examples:
  | nombreReunion      | diafechaInicio | mesfechaInicio | aniofechaInicio | horaInicio | minutoInicio | horaDuracion | minutoDuracion | lugarReunion | estudiante      | profesor        | button    | resultado        |
- | "nombre ejemplo 1" | "17"           | "April"        | "2013"          | "15"       | "30"         | "3"          | "0"            | "ML-508"     | "Laura Riveros" | "Darío Correal" | "Guardar" | "Reunion creada" |
+ | "nombre ejemplo 1" | "17"           | "April"        | "2013"          | "15"       | "30"         | "03"          | "00"            | "ML-508"     | "Laura Riveros" | "Darío Correal" | "Guardar" | "Reunion creada" |
 
   Scenario Outline: Crear una reunion repetida
     When el nombre de la reunion es <nombreReunion>
@@ -38,4 +38,4 @@ Examples:
 
 Examples:
  | nombreReunion      | diafechaInicio | mesfechaInicio | aniofechaInicio | horaInicio | minutoInicio | horaDuracion | minutoDuracion | lugarReunion | estudiante      | profesor        | button    | resultado        |
- | "nombre ejemplo 1" | "17"           | "April"        | "2013"          | "15"       | "30"         | "3"          | "0"            | "ML-508"     | "Laura Riveros" | "Darío Correal" | "Guardar" | "Reunion creada" |
+ | "nombre ejemplo 1" | "17"           | "April"        | "2013"          | "15"       | "30"         | "03"          | "00"            | "ML-508"     | "Laura Riveros" | "Darío Correal" | "Guardar" | "Reunion creada" |

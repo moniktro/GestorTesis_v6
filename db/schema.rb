@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20130413170743) do
     t.datetime "updated_at",            :null => false
   end
 
-  create_table "compromisos_estudiantes", :force => true do |t|
+  create_table "compromisos_estudiantes", :id => false, :force => true do |t|
     t.integer  "compromiso_id"
     t.integer  "estudiante_id"
     t.boolean  "finalizado"
