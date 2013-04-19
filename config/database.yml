@@ -15,7 +15,7 @@ development:
   database: GestorTesis_v6_development
   pool: 5
   username: root
-  password: root
+  password: 
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: GestorTesis_v6_test
   pool: 5
   username: root
-  password: root
+  password: 
   host: localhost
 
 production:
