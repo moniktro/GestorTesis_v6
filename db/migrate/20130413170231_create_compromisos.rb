@@ -4,7 +4,7 @@ class CreateCompromisos < ActiveRecord::Migration
       t.string :asunto
       t.string :descripcionCompromiso
       t.date :fechaLimite
-      t.boolean :finalizado
+      t.boolean :finalizado, :default => false
       t.integer :estudiantes_id
       t.integer :profesors_id
       t.integer :teses_id

@@ -3,8 +3,7 @@ class CreateCompromisosEstudiantes < ActiveRecord::Migration
     create_table :compromisos_estudiantes, :id => false do |t|
       t.integer :compromiso_id
       t.integer :estudiante_id
-      t.boolean :finalizado
-
+      t.boolean :finalizado, :default => false
       t.timestamps
     end
   end

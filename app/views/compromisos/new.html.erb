@@ -1,5 +1,5 @@
 <h1>Crear compromiso</h1>
-
+<br/>
 <%= form_for(@compromiso) do |f| %>
   <% if @compromiso.errors.any? %>
     <div id="error_explanation">
@@ -13,40 +13,70 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :asunto %><br />
-    <%= f.text_field :asunto %>
-  </div>
+  <strong><%= label_tag :Tesis %></strong><br/>
+  
+  <% if params[:tesisId].nil? %>
+    <div class="field">
+    
+      <%= select_tag 'teses_id',
+          options_from_collection_for_select(Tese.find(:all, :conditions => ["Finalizado = 0 OR Finalizado IS NULL"], :order => ["nombreTesis ASC"]), :id, :nombreTesis),
+          :size => 5,
+          :style => 'width:800px',
+          :onclick =>'javascript:location.href="' + new_compromiso_path + '?tesisId=" + this.value'
+      %>
+    </div>
+      <br/>
+    <div class="actions" style="clear:both">
+      <br/>
+      <%= link_to 'Regresar', compromisos_path %>
+    </div>
+  <% else %>
+    <%= text_field(:tesis, :nombreTesis, :size => 70, :onfocus=>'blur();') %>
 
-  <div class="field">
-   &nbsp;<%= f.label :fechaLimite %><br />
-    <%= f.date_select :fechaLimite %>
-  </div>
-  <div class="field">
-    <%= f.label :Descripcion %><br />
-    <%= f.text_area :descripcionCompromiso, :size => "99x5" %>
-  </div>
-  <div class="field">
-    <p align="center"><strong>Asignar responsables</strong></p>
- <table align="left" border="1" width="80%" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>SELECCION</td>
-          <td>CODIGO</td>
-          <td>NOMBRE</td>
-        </tr>
+    <div class="field">
+      <br/>
+      <strong><%= f.label :Asunto %></strong><br />
+      <%= f.text_field :asunto, :size=> 70 %>
+    </div>
 
-        <% @estudiantes.each do |estudiante| %>
+    <div class="field">
+      <br/>
+      <strong><%= f.label "Fecha Límite" %></strong><br />
+      <%= f.date_select :fechaLimite %>
+    </div>
+    <div class="field">
+      <br/>
+      <strong><%= f.label "Descripción" %></strong><br />
+      <%= f.text_area :descripcionCompromiso, :size => "99x3" %>
+    </div>
+    <%  if @estudiantes.any? %>
+      <div class="field">
+        <p align="center"><strong>Asignar responsables</strong></p>
+        <table align="left" border="1" width="90%" cellpadding="0" cellspacing="0">
           <tr>
-            <td><%= check_box_tag 'estudiante_ids[]', estudiante.id %></td>
-            <td><%=h estudiante.codigoEstudiante %></td>
-            <td><%=h estudiante.nombreEstudiante %> </td>
+            <td>SELECCION</td>
+            <td>CODIGO</td>
+            <td>NOMBRE</td>
           </tr>
+
+          <% @estudiantes.each do |estudiante| %>
+            <tr>
+              <td><%= check_box_tag 'estudiante_ids[]', estudiante.id %></td>
+              <td><%=h estudiante.codigoEstudiante %></td>
+              <td><%=h estudiante.nombreEstudiante %> </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+    <br/>
+    <div class="actions" style="clear:both">
+      <br/>
+      <%  if @estudiantes.any? %>
+        <%= f.submit 'Guardar' %>
       <% end %>
-    </table>
-  </div>
-<br/>
-  <div class="actions">
-    <%= f.submit 'Guardar' %>
-    <%= link_to 'Regresar', compromisos_path + "?tesisId=#{@tesis.id}" %>
-  </div>
-<% end %>
+      <%= link_to 'Regresar', compromisos_path %>
+    </div>
+    
+  <% end %>
+<%  end %>

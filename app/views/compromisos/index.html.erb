@@ -1,60 +1,43 @@
 <p style="color: red"><%= notice %></p>
 
 <h1>COMPROMISOS</h1>
-
+<br/>
+<%= link_to 'Crear compromiso', new_compromiso_path %>
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<%=  link_to 'Regresar', teses_path %>
+<br/>
 <br/>
   <div class="container">
-    
-          <% @tesis.each do |t| %>
-            <div class="CSSTableGenerator">
-            <table>
-              <tr>
-                <td>TESIS</td><td><%= t.nombreTesis %></td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                <table>
-                  <tr>
-                  <td width="10%">Asunto</td>
-                  <td width="25%">Descripcion</td>
-                  <td width="10%">Fecha Limite</td>
-                  <td width="20%">Responsables</td>
-                  <td width="10%">Estado</td>
-                  <td width="15%" colspan="2">Acciones</td>
-                </tr>
-
-                  <% vec_Compromiso = Compromiso.find_by_sql('SELECT DISTINCT C.id,
-                                                                     C.asunto,
-                                                                     C.descripcionCompromiso,
-                                                                     C.fechaLimite,
-                                                                     C.finalizado
-                                                                FROM compromisos C
-                                                                    ,estudiantes E
-                                                                    ,compromisos_estudiantes CE
-                                                               WHERE E.id = CE.estudiante_id
-                                                                 AND C.id = CE.compromiso_id
-                                                                 AND E.tesis_id = ' + t.id.to_s ) %>
-                      <% for i in 0...vec_Compromiso.length%>
-                        <% compromiso = vec_Compromiso[i] %>
-                        <tr>
-                          <td><%= link_to vec_Compromiso[i][:asunto] , compromiso%></td>
-                          <td><%=  vec_Compromiso[i][:descripcionCompromiso]%></td>
-                          <td><%=  vec_Compromiso[i][:fechaLimite]%></td>
-                          <td>
+    <div class="CSSTableGenerator">
+      <table>
+        <tr>
+          <td width="10%">Asunto</td>
+          <td width="25%">Descripcion</td>
+          <td width="10%">Fecha Limite</td>
+          <td width="20%">Responsables</td>
+          <td width="10%">Estado</td>
+          <td width="15%" colspan="2">Acciones</td>
+        </tr>
+        <% @compromisos.each do |compromiso| %>
+          <tr>
+              <td><%= link_to compromiso.asunto, compromiso%></td>
+              <td><%= compromiso.descripcionCompromiso %></td>
+              <td><%= compromiso.fechaLimite %></td>
+              <td>
                             <% vec_Responsable = Estudiante.find_by_sql('SELECT E.codigoEstudiante,
                                                                                 E.nombreEstudiante
                                                                            FROM estudiantes E
                                                                                ,compromisos_estudiantes CE
                                                                WHERE E.id = CE.estudiante_id
-                                                                 AND CE.compromiso_id = ' + vec_Compromiso[i][:id].to_s) %>
+                                                                 AND CE.compromiso_id = ' + compromiso.id.to_s) %>
 
                             <% for j in 0...vec_Responsable.length%>
                               <%=  vec_Responsable[j][:codigoEstudiante] %><%=" - "%> <%= vec_Responsable[j][:nombreEstudiante] %><br/>
                             <% end %>
                           </td>
                           <td>
-                          <% if(vec_Compromiso[i][:finalizado] = 0) %>
-                            <% if(vec_Compromiso[i][:fechaLimite] >= Date.today) %>
+                          <% if(compromiso.finalizado = 0) %>
+                            <% if(compromiso.fechaLimite >= Date.today) %>
                               <%="PENDIENTE"%>
                             <% else %>
                               <%="VENCIDO"%>
@@ -69,20 +52,7 @@
                         </tr>
                       <%end%>
              </table>
-                </td>
-              </tr>
-
-            <tr>
-              <td colspan="2">
-              <%= link_to 'Crear compromiso', new_compromiso_path + "?tesisId=#{t.id}"%>
-                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-              <%=  link_to 'Regresar', teses_path %>
-                </td>
-            </tr>
-            </table>
             </div>
             <br></br>
-
-         <%end%>
-    
+   
   </div>

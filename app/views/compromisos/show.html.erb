@@ -20,7 +20,11 @@
     <td><strong>Estado</strong></td>
     <td>
       <%if(@compromiso.finalizado == false or @compromiso.finalizado == nil)%>
-            <%="ACTIVO"%>
+        <% if(@compromiso.fechaLimite >= Date.today) %>
+            <%="PENDIENTE"%>
+        <% else %>
+            <%= "VENCIDO" %>
+        <% end %>
         <%else%>
             <%="FINALIZADO"%>
         <%end%>
@@ -35,9 +39,13 @@
       <%end%>
     </td>
 </tr>
+<tr>
+  <td><strong>Tesis:</strong></td>
+  <td><%=@tesis.nombreTesis%></td>
+</tr>
 </table>
 </div>
 </div>
 <br/>
 <%= link_to 'Actualizar', edit_compromiso_path(@compromiso) %> |
-<%= link_to 'Regresar', compromisos_path + "?tesisId=#{@tesis.id}" %>
+<%= link_to 'Regresar', compromisos_path %>

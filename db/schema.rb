@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20130413170743) do
     t.string   "asunto"
     t.string   "descripcionCompromiso"
     t.date     "fechaLimite"
-    t.boolean  "finalizado"
+    t.boolean  "finalizado", :default => false
     t.integer  "estudiantes_id"
     t.integer  "profesors_id"
     t.integer  "teses_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130413170743) do
   create_table "compromisos_estudiantes", :id => false, :force => true do |t|
     t.integer  "compromiso_id"
     t.integer  "estudiante_id"
-    t.boolean  "finalizado"
+    t.boolean  "finalizado", :default => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

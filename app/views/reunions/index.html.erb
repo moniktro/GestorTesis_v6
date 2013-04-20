@@ -1,19 +1,21 @@
-<h1>Reuniones</h1>
+<h1>REUNIONES</h1>
 <br>
-<%= link_to 'Programar Reunion', new_reunion_path %>
+  <%= link_to 'Programar Reunion', new_reunion_path %>
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<%=  link_to 'Regresar', teses_path %>
 </br>
 <br>
 <div class="CSSTableGenerator">
 <table border="1" cellpadding="10">
   <tr>
-    <th> Asunto </th>
-    <th> Fecha </th>
-    <th> Duración </th>
-    <th> Lugar </th>
-    <th> Profesor </th>
-    <th> Estudiante </th>
-    <th> Modificar </th>
-    <th> Eliminar </th>
+    <td> Asunto </td>
+    <td> Fecha </td>
+    <td> Duración </td>
+    <td> Lugar </td>
+    <td> Profesor </td>
+    <td> Estudiante </td>
+    <td> Modificar </td>
+    <td> Eliminar </td>
   </tr>
 <% @reunions.each do |reunion| %>
   <tr>
@@ -28,7 +30,7 @@
     <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
     <td><%= nombre_estudiante %></td>
     <td><%= link_to 'Modificar', edit_reunion_path(reunion) %></td>
-    <td><%= link_to 'Eliminar', reunion, :method => :delete, data: { confirm: 'Esta seguro que desea eliminar la reunion ?' } %></td>
+    <td><%= link_to 'Eliminar', reunion, :metdod => :delete, data: { confirm: 'Esta seguro que desea eliminar la reunion ?' } %></td>
   </tr>
 <% end %>
 </table>

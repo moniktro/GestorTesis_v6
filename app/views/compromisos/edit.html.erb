@@ -1,5 +1,5 @@
 <h1>Editar compromiso</h1>
-
+<br/>
 <%= form_for(@compromiso) do |f| %>
   <% if @compromiso.errors.any? %>
     <div id="error_explanation">
@@ -13,17 +13,21 @@
     </div>
   <% end %>
 
+  <strong><%= label_tag :Tesis %></strong><br/>
+  <%= text_field(:tesis, :nombreTesis, :size => 70, :onfocus=>'blur();') %>
+
   <div class="field">
-    <%= f.label :asunto %><br />
+    <br/>
+    <strong><%= f.label :asunto %></strong><br />
     <%= f.text_field :asunto %>
   </div>
 
   <div class="field">
-   &nbsp;<%= f.label :fechaLimite %><br />
+    <br/><strong><%= f.label "Fecha límite" %></strong><br />
     <%= f.date_select :fechaLimite %>
   </div>
   <div class="field">
-    <%= f.label :Descripcion %><br />
+    <br/><strong><%= f.label "Descripción" %></strong><br />
     <%= f.text_area :descripcionCompromiso, :size => "99x5" %>
   </div>
 
@@ -44,8 +48,9 @@
     </table>
   </div>
 <br/>
-  <div class="actions">
+  <div class="actions" style="clear:both">
+    <br/>
     <%= f.submit 'Guardar' %>
-    <%= link_to 'Regresar', compromisos_path + "?tesisId=#{@tesis.id}" %>
+    <%= link_to 'Regresar', compromisos_path %>
   </div>
 <% end %>

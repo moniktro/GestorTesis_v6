@@ -6,8 +6,10 @@ class CompromisosController < ApplicationController
 
     if tesisId.nil?
       @tesis = Tese.all
+      @compromisos = Compromiso.find(:all, :conditions => ["Finalizado = 0 OR Finalizado IS NULL"], :order => ["fechaLimite ASC"])
     else
       @tesis = Tese.find(:all, :conditions => [ "id = ?", tesisId ])
+      @compromisos = Compromiso.find(:all, :conditions => ["Finalizado = 0 OR Finalizado IS NULL"], :order => ["fechaLimite ASC"])
     end
 
     respond_to do |format|
@@ -43,9 +45,14 @@ class CompromisosController < ApplicationController
   # GET /compromisos/new
   # GET /compromisos/new.json
   def new
+    if params[:tesisId].nil? then
+      @tesis = Tese.all
+    else
+      @tesis = Tese.find(params[:tesisId])
+    end
+
     @compromiso = Compromiso.new
     @estudiantes = Estudiante.find_all_by_tesis_id(params[:tesisId])
-    @tesis = Tese.find(params[:tesisId])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -74,6 +81,7 @@ class CompromisosController < ApplicationController
   # POST /compromisos.json
   def create
     @compromiso = Compromiso.new(params[:compromiso])
+    @compromiso.finalizado = false
     estudiante_ids = params[:estudiante_ids]
 
     respond_to do |format|
