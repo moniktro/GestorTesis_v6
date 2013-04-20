@@ -65,7 +65,7 @@
                           </td>
                           
                         <td><%= link_to 'Actualizar', edit_compromiso_path(compromiso) %></td>
-                        <td><%= link_to 'Eliminar', compromiso, method: :delete, data: { confirm: '¿Está seguro de eliminar el compromiso?' } %></td>
+                        <td><%= link_to 'Eliminar', compromiso, :method => :delete, data: { confirm: 'Esta seguro que desea eliminar el compromiso ?' } %></td>
                         </tr>
                       <%end%>
              </table>

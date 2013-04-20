@@ -28,7 +28,7 @@
     <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
     <td><%= nombre_estudiante %></td>
     <td><%= link_to 'Modificar', edit_reunion_path(reunion) %></td>
-    <td><%= link_to 'Eliminar', reunion, :confirm => 'Esta seguro de eliminar la reunión?', :method => :delete %></td>
+    <td><%= link_to 'Eliminar', reunion, :method => :delete, data: { confirm: 'Esta seguro que desea eliminar la reunion ?' } %></td>
   </tr>
 <% end %>
 </table>

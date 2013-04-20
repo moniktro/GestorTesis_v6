@@ -1,3 +1,5 @@
+  <%= javascript_include_tag :all %>
+  <%= csrf_meta_tag %>
 <h1>TESIS</h1>
 <br>
 <%= link_to 'Nueva Tesis', new_tese_path %>
@@ -17,7 +19,7 @@
   </tr>
 <% @teses.each do |tese| %>
   <tr>
-    <td><%=  tese.nombreTesis %></td>
+    <td><%= link_to tese.nombreTesis, tese %></td>
     <td><%= tese.areaInvestigacion %></td>
     <% vec_estudiante = Estudiante.find(:all, :conditions => [ "tesis_id = ?", tese.id])%>
     <%estudiantes=""%>
@@ -33,7 +35,7 @@
     <td><%= tese.fechaInicio %></td>
     <td><%= tese.fechaFin %></td>
     <td><%= link_to 'Modificar', edit_tese_path(tese) %></td>
-    <td><%= link_to 'Eliminar', tese, :confirm => 'Esta seguro de borrar la tesis?', :method => :delete %></td>
+    <td><%= link_to 'Eliminar', tese, :method => :delete, data: { confirm: 'Esta seguro que desea eliminar la tesis ?' } %></td>
     <td><%= link_to 'Crear compromiso', new_compromiso_path + "?tesisId=#{tese.id}"%></td>
     <td><%= link_to 'Crear Reunion', new_reunion_path %></td>
   </tr>

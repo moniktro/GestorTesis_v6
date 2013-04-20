@@ -44,7 +44,7 @@ class TesesController < ApplicationController
 
     respond_to do |format|
       if @tese.save
-        format.html { redirect_to @tese, notice: 'Tese was successfully created.' }
+        format.html { redirect_to @tese, notice: 'Tesis Creada Exitosamente' }
         format.json { render json: @tese, status: :created, location: @tese }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class TesesController < ApplicationController
 
     respond_to do |format|
       if @tese.update_attributes(params[:tese])
-        format.html { redirect_to @tese, notice: 'Tese was successfully updated.' }
+        format.html { redirect_to @tese, notice: 'Tesis Actualizada Exitosamente' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,6 +72,16 @@ class TesesController < ApplicationController
   # DELETE /teses/1
   # DELETE /teses/1.json
   def destroy
+    @tese = Tese.find(params[:id])
+    @tese.destroy
+
+    respond_to do |format|
+      format.html { redirect_to teses_url }
+      format.json { head :no_content }
+    end
+  end
+
+   def delete
     @tese = Tese.find(params[:id])
     @tese.destroy
 

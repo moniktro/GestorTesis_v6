@@ -80,4 +80,14 @@ class ReunionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def delete
+    @reunion = Reunion.find(params[:id])
+    @reunion.destroy
+
+    respond_to do |format|
+      format.html { redirect_to reunions_url }
+      format.json { head :no_content }
+    end
+  end
 end
