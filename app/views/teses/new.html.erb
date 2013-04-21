@@ -1,5 +1,5 @@
 <h1>Nueva Tesis</h1>
-
+<% idprofesor = 1 %>
 <%= form_for(@tese) do |f| %>
   <% if @tese.errors.any? %>
     <div id="error_explanation">
@@ -37,10 +37,7 @@
     <%= f.label :"Tesis Finalizada" %>
     <%= f.check_box :finalizado %><br /><br />
   </div>
-  <div class="field">
-    <%= f.label :profesor_id %><br />
-    <%= f.number_field :profesor_id %><br /><br />
-  </div>
+  <%= f.hidden_field :profesor_id, :value => 1 %>
   <div class="actions">
     <%= f.submit 'Guardar'%>
   </div>
