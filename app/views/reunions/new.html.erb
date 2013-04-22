@@ -1,5 +1,5 @@
 <h1>Nueva Reunion</h1>
-
+<br/>
 <%= form_for(@reunion) do |f| %>
   <% if @reunion.errors.any? %>
     <div id="error_explanation">
@@ -12,38 +12,73 @@
       </ul>
     </div>
   <% end %>
+<div class="CSS_Form">
+  <strong><%= label_tag :Tesis %></strong><br/>
 
+  <% if params[:tesisId].nil? %>
+    <div class="field">
+
+      <%= select_tag 'teses_id',
+          options_from_collection_for_select(Tese.find(:all, :conditions => ["Finalizado = 0 OR Finalizado IS NULL"], :order => ["nombreTesis ASC"]), :id, :nombreTesis),
+          :size => 5,
+          :style => 'width:800px',
+          :onclick =>'javascript:location.href="' + new_reunion_path + '?tesisId=" + this.value'
+      %>
+    </div>
+      <br/>
+    <div class="actions" style="clear:both">
+      <br/>
+      <%= link_to 'Regresar', compromisos_path %>
+    </div>
+  <% else %>
+   <%= text_field(:tesis, :nombreTesis, :size => 70, :onfocus=>'blur();') %>
   <div class="field">
-    <%= f.label :"Asunto "%><br />
-    <%= f.text_field :asunto_reu %><br /><br />
+    <br/>
+    <strong><%= f.label :"Asunto "%></strong><br />
+    <%= f.text_field :asunto_reu , :size => 70 %><br />
   </div>
   <div class="field">
-    <%= f.label :"Fecha y Hora " %><br />
-    <%= f.datetime_select :fecha_reu, :order =>[:day, :month,:year]  %><br /><br />
+    <br/>
+    <strong><%= f.label :Lugar %></strong><br />
+    <%= f.text_field :lugar, :size => 70 %><br />
   </div>
   <div class="field">
-    <%= f.label :"Duración " %><br />
-    <%= f.time_select :duracion_reu %><br /><br />
+    <br/>
+    <strong><%= f.label :"Fecha y Hora " %></strong><br />
+    <%= f.datetime_select :fecha_reu, :order =>[:day, :month,:year]  %><br />
   </div>
   <div class="field">
-    <%= f.label :Lugar %><br />
-    <%= f.text_field :lugar %><br /><br />
+    <br/>
+    <strong><%= f.label :"Duración " %></strong><br />
+    <%= f.time_select :duracion_reu %><br />
   </div>
-  <div class="field">
-    <%= f.label :"Estudiante "%><br />
-    <%= f.text_field :estudiantes_id %><br /><br />
-  </div>
-  <div class="field">
-    <%= f.label :"Profesor "%><br />
-    <%= f.text_field :profesors_id %><br /><br />
-  </div>
-  <div class="field">
-    <%= f.label :teses_id %><br />
-    <%= f.number_field :teses_id %><br /><br />
-  </div>
-  <div class="actions">
+
+ <%  if @asistentes.any? %>
+      <!--div class="field"-->
+       <p align="center" style="color:#ff7f00"><strong>Asistentes</strong></p>
+        <div class="CSSTableGenerator">
+        <table align="left" border="1" width="90%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>SELECCION</td>
+            <td>NOMBRE</td>
+          </tr>
+
+          <% @asistentes.each do |asistente| %>
+            <tr>
+              <td><%= check_box_tag 'asistente_ids[]', asistente.Id %></td>
+              <td><%=h asistente.Nombre %></td>
+            </tr>
+          <% end %>
+        </table>
+        </div>
+      <!--/div-->
+    <% end %>
+      
+  <div class="actions" style="clear:both;">
+    <br/>
     <%= f.submit 'Guardar'%>
+    <%= link_to 'Menu Reuniones', reunions_path %>
   </div>
 <% end %>
-
-<%= link_to 'Menu Reuniones', reunions_path %>
+<%  end %>
+</div>

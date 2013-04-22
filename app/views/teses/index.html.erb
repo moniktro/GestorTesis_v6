@@ -37,7 +37,7 @@
     <td><%= link_to 'Modificar', edit_tese_path(tese) %></td>
     <td><%= link_to 'Eliminar', tese, :method => :delete, data: { confirm: 'Esta seguro que desea eliminar la tesis ?' } %></td>
     <td><%= link_to 'Crear compromiso', new_compromiso_path + "?tesisId=#{tese.id}"%></td>
-    <td><%= link_to 'Crear Reunion', new_reunion_path %></td>
+    <td><%= link_to 'Crear Reunion', new_reunion_path + "?tesisId=#{tese.id}" %></td>
   </tr>
 <% end %>
 </table>

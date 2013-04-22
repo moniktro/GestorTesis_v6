@@ -12,23 +12,32 @@
     <td> Fecha </td>
     <td> Duración </td>
     <td> Lugar </td>
-    <td> Profesor </td>
-    <td> Estudiante </td>
+    <td> Asistentes </td>
     <td> Modificar </td>
     <td> Eliminar </td>
   </tr>
 <% @reunions.each do |reunion| %>
   <tr>
-    <td><%= reunion.asunto_reu %></td>
+    <td><%= link_to reunion.asunto_reu, reunion %></td>
     <td><%= reunion.fecha_reu.strftime("%d-%b-%Y [ %I:%M %p ]") %></td>
     <td><%= reunion.duracion_reu.strftime("%I:%M ( hh:mi )") %></td>
     <td><%= reunion.lugar %></td>
-    <% temp_profesor = Profesor.find(:all, :conditions => [ "id = ?", reunion.profesors_id])%>
-    <% nombre_profesor=temp_profesor[0][:nombre] + " "%>
-    <td><%= nombre_profesor %></td>
-    <% vec_estudiante = Estudiante.find(:all, :conditions => [ "id = ?", reunion.estudiantes_id])%>
-    <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
-    <td><%= nombre_estudiante %></td>
+    <% vec_Asistentes = Reunion.find_by_sql("SELECT P.nombre
+                                               FROM Profesors P
+                                                   ,Reunions_Estudiantes ER
+                                              WHERE P.id = ER.estudiante_id
+                                                AND ER.reunion_id = " + reunion.id.to_s +
+                                            " UNION ALL " +
+                                            "SELECT E.nombreEstudiante nombre
+                                               FROM Estudiantes E
+                                                   ,Reunions_Estudiantes ER
+                                              WHERE E.id = ER.estudiante_id
+                                                AND ER.reunion_id = " + reunion.id.to_s)%>
+    <td>
+    <% vec_Asistentes.each do |asistente| %>
+      <%= asistente.nombre %><br/>
+    <% end %>
+    </td>
     <td><%= link_to 'Modificar', edit_reunion_path(reunion) %></td>
     <td><%= link_to 'Eliminar', reunion, :metdod => :delete, data: { confirm: 'Esta seguro que desea eliminar la reunion ?' } %></td>
   </tr>

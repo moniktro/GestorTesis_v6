@@ -13,42 +13,54 @@
       </ul>
     </div>
   <% end %>
+<div class="CSS_Form">
+    <strong><%= label_tag "Tesis" %></strong>
+    <br/>
+   <%= text_field(:tesis, :nombreTesis, :size => 70, :onfocus=>'blur();') %>
+  <div class="field">
+    <br/>
+    <strong><%= f.label :"Asunto "%></strong><br />
+    <%= f.text_field :asunto_reu , :size => 70 %><br />
+  </div>
+  <div class="field">
+    <br/>
+    <strong><%= f.label :Lugar %></strong><br />
+    <%= f.text_field :lugar, :size => 70 %><br />
+  </div>
+  <div class="field">
+    <br/>
+    <strong><%= f.label :"Fecha y Hora " %></strong><br />
+    <%= f.datetime_select :fecha_reu, :order =>[:day, :month,:year]  %><br />
+  </div>
+  <div class="field">
+    <br/>
+    <strong><%= f.label :"Duración " %></strong><br />
+    <%= f.time_select :duracion_reu %><br />
+  </div>
 
-  <p>
-    <%= f.label :Asunto %><br />
-    <%= f.text_field :asunto_reu %>
-  </p>
-  <p>
-    <%= f.label :Fecha %><br />
-    <%= f.datetime_select :fecha_reu %>
-  </p>
-  <p>
-    <%= f.label :"Duración" %><br />
-    <%= f.time_select :duracion_reu %>
-  </p>
-  <p>
-    <%= f.label :Lugar %><br />
-    <%= f.text_field :lugar %>
-  </p>
+ <% if @asistentes.any? %>
+      <!--div class="field"-->
+        <p align="center" style="color:#ff7f00"><strong>Asistentes</strong></p>
+        <table align="left" border="0" width="50%" cellpadding="0" cellspacing="0">
+          <!--tr>
+            <td>NOMBRE</td>
+          </tr-->
 
-  <p>
-    <%= f.label :Estudiante %><br />
-    <%= f.text_field :estudiantes_id, "size" => 5 %>
-    <% vec_estudiante = Estudiante.find(:all, :conditions => [ "id = ?", @reunion.estudiantes_id ])%>
-    <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
-    <%=h nombre_estudiante %>
-  </p>
-  <p>
-    <%= f.label :Profesor %><br />
-    <%= f.text_field :profesors_id, "size" => 5 %>
-    <% vec_profesor = Profesor.find(:all, :conditions => [ "id = ?", @reunion.profesors_id ])%>
-    <% nombre_profesor=vec_profesor[0][:nombre] + " "%>
-    <%=h nombre_profesor %>
-  </p>
-  <p>
-    <%= f.submit 'Actualizar' %>
-  </p>
-<% end %>
+          <% @asistentes.each do |asistente| %>
+            <tr>
+              <td><%=h asistente.Nombre %></td>
+            </tr>
+          <% end %>
+        </table>
+      <!--/div-->
+    <% end %>
+      <p>&nbsp;</p>
+</div>
+  <div class="actions" style="clear:both;">
+    <br/>
+    <%= f.submit 'Guardar'%>
+    <%= link_to 'Menu Reuniones', reunions_path %>
+  </div>
 
-<%= link_to 'Mostrar', @reunion %> |
-<%= link_to 'Menu Reuniones', reunions_path %>
+
+<%  end %>

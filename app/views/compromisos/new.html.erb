@@ -3,7 +3,7 @@
 <%= form_for(@compromiso) do |f| %>
   <% if @compromiso.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@compromiso.errors.count, "error") %> no es posible grabar el compromiso:</h2>
+      <h2><%= pluralize(@compromiso.errors.count, "Error") %> no es posible grabar el compromiso:</h2>
 
       <ul>
       <% @compromiso.errors.full_messages.each do |msg| %>
@@ -13,6 +13,7 @@
     </div>
   <% end %>
 
+  <div class="CSS_Form">
   <strong><%= label_tag :Tesis %></strong><br/>
   
   <% if params[:tesisId].nil? %>
@@ -47,11 +48,13 @@
     <div class="field">
       <br/>
       <strong><%= f.label "Descripción" %></strong><br />
-      <%= f.text_area :descripcionCompromiso, :size => "99x3" %>
+      <%= f.text_area :descripcionCompromiso, :size => "96x3" %>
     </div>
     <%  if @estudiantes.any? %>
       <div class="field">
-        <p align="center"><strong>Asignar responsables</strong></p>
+        
+        <p align="center" style="color:#ff7f00"><strong>Asignar responsables</strong></p>
+        <div class="CSSTableGenerator">
         <table align="left" border="1" width="90%" cellpadding="0" cellspacing="0">
           <tr>
             <td>SELECCION</td>
@@ -67,16 +70,18 @@
             </tr>
           <% end %>
         </table>
+        </div>
       </div>
     <% end %>
     <br/>
     <div class="actions" style="clear:both">
       <br/>
       <%  if @estudiantes.any? %>
-        <%= f.submit 'Guardar' %>
+        <%= f.submit 'Guardar' %>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <% end %>
       <%= link_to 'Regresar', compromisos_path %>
     </div>
     
   <% end %>
 <%  end %>
+  </div>

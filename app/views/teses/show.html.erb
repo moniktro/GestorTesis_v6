@@ -1,43 +1,59 @@
 <h2><p id="notice"><%= notice %></p></h2>
-<p>
-  <b>Tesis*:</b>
-  <%= @tese.nombreTesis %>
-</p>
+<div class="CSSTableGenerator">
+<table align="center" width="100%" border="1" cellspacing="0">
+<tr>
+  <td>Tesis:</td>
+  <td><%= @tese.nombreTesis %></td>
+</tr>
 
-<p>
-  <b>Area Investigación*:</b>
-  <%= @tese.areaInvestigacion %>
-</p>
+<tr>
+  <td>Area Investigación:</td>
+  <td><%= @tese.areaInvestigacion %></td>
+</tr>
+<tr>
+  <td>Fecha inicio:</td>
+  <td><%= @tese.fechaInicio %></td>
+</tr>
 
-<p>
-  <b>Fecha inicio:</b>
-  <%= @tese.fechaInicio %>
-</p>
+<tr>
+  <td>Fecha fin:</td>
+  <td><%= @tese.fechaFin %></td>
+</tr>
 
-<p>
-  <b>Fecha fin:</b>
-  <%= @tese.fechaFin %>
-</p>
+<tr>
+  <td>Descripcion tesis:</td>
+  <td><%= @tese.descripcionTesis %></td>
+</tr>
 
-<p>
-  <b>Descripcion tesis:</b>
-  <%= @tese.descripcionTesis %>
-</p>
-
-<p>
-  <b>Tesis finalizada:</b>
-  <%if(@tese.finalizado == false)%>
+<tr>
+  <td>Tesis finalizada:</td>
+  <td>
+    <%if(@tese.finalizado == false)%>
             <%="Activa"%>
           <%else%>
             <%="Finalizada"%>
         <%end%>
-</p>
-
-<p>
-  <b>Profesor:</b>
-  <%= @tese.profesor_id %>
-</p>
-
-
+  </td>
+</tr>
+<tr>
+  <td>Profesor:</td>
+  <td><%= @profesor.nombre %></td>
+</tr>
+<!--tr>
+  <td>Estudiantes</td>
+  <td>
+    <%# @estudiantes = Estudiante.find_by_sql('SELECT DISTINCT
+                                                  E.nombreEstudiante
+                                             FROM Estudiantes E
+                                            WHERE E.Tesis_id = ' + @tese.id.to_s) %>
+    <%# @estudiantes.each do |est| %>
+      <%#= est.nombreEstudiante %><br/>
+      <%#= est.nombreEstudiante %>
+    <%# end %>
+  </td>
+</tr-->
+</table>
+</div>
+<br/>
 <%= link_to 'Editar', edit_tese_path(@tese) %> |
 <%= link_to 'Menu Tesis', teses_path %>

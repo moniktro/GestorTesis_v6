@@ -1,38 +1,41 @@
-<h1>Reunion creada</h1>
+<p style="color: red"><%= notice %></p>
+<h3 align="center">CONSULTA REUNIÓN</h3>
+<br/>
+<div class="container">
+<div class="CSSTableGenerator">
+<table align="center" width="100%" border="1" cellspacing="0">
+  <tr>
+    <td>Asunto:</td>
+    <td><%=h @reunion.asunto_reu %></td>
+  </tr>
 
-<p>
-  <b>Asunto:</b>
-  <%= @reunion.asunto_reu %>
-</p>
+  <tr>
+    <td>Fecha y Hora:</td>
+    <td><%=h @reunion.fecha_reu.strftime("%d-%b-%Y [ %I:%M %p ]") %></td>
+  </tr>
 
-<p>
-  <b>Fecha y hora:</b>
-  <%= @reunion.fecha_reu %>
-</p>
+  <tr>
+    <td>Duración:</td>
+    <td><%=h @reunion.duracion_reu.strftime("%I:%M ( hh:mi )") %></td>
+  </tr>
 
-<p>
-  <b>Duración:</b>
-  <%= @reunion.duracion_reu %>
-</p>
+<tr>
+  <td>Lugar:</td>
+  <td><%=h @reunion.lugar %></td>
+</tr>
 
-<p>
-  <b>Lugar:</b>
-  <%= @reunion.lugar %>
-</p>
-
-<p>
-  <b>Estudiante:</b>
-  <% vec_estudiante = Estudiante.find(:all, :conditions => [ "id = ?", @reunion.estudiantes_id ])%>
-  <% nombre_estudiante=vec_estudiante[0][:nombreEstudiante] + " "%>
-  <%= nombre_estudiante %>
-</p>
-
-<p>
-  <b>Profesor:</b>
-    <% vec_profesor = Profesor.find(:all, :conditions => [ "id = ?", @reunion.profesors_id ])%>
-    <% nombre_profesor=vec_profesor[0][:nombre] + " "%>
-    <%= nombre_profesor %>  
-</p>
-
+<tr>
+  <td>Asistentes</td>
+  <td>
+      <% @asistentes.each do |est| %>
+        <%=h est.nombre %>
+        <br/>
+      <%end%>
+ </td>
+</tr>
+</table>
+</div>
+</div>
+<br/>
 <%= link_to 'Modificar', edit_reunion_path(@reunion) %> |
-<%= link_to 'Menu Reuniones', reunions_path %>
+<%= link_to 'Regresar', reunions_path %>

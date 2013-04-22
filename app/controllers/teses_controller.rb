@@ -14,6 +14,7 @@ class TesesController < ApplicationController
   # GET /teses/1.json
   def show
     @tese = Tese.find(params[:id])
+    @profesor = Profesor.find(@tese.profesor_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +26,7 @@ class TesesController < ApplicationController
   # GET /teses/new.json
   def new
     @tese = Tese.new
-
+      
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @tese }
@@ -41,13 +42,16 @@ class TesesController < ApplicationController
   # POST /teses.json
   def create
     @tese = Tese.new(params[:tese])
+    @tese.profesor_id = params[:profesor_id]
+    @tese.finalizado = false
 
     respond_to do |format|
       if @tese.save
         format.html { redirect_to @tese, notice: 'Tesis Creada Exitosamente' }
         format.json { render json: @tese, status: :created, location: @tese }
       else
-        format.html { render action: "new" }
+        @profesor = Profesor.all
+        format.html { render action: "new"}
         format.json { render json: @tese.errors, status: :unprocessable_entity }
       end
     end
