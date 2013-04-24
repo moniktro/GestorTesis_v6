@@ -1,9 +1,8 @@
-<h1>Nueva Tesis</h1>
-
 <%= form_for(@tese) do |f| %>
   <% if @tese.errors.any? %>
+<div class ="error">
     <div id="error_explanation">
-      <h2><%= pluralize(@tese.errors.count, "error") %> prohibited this tese from being saved:</h2>
+      <h4><%= pluralize(@tese.errors.count, "error") %> grabando tesis:</h4>
 
       <ul>
       <% @tese.errors.full_messages.each do |msg| %>
@@ -11,7 +10,10 @@
       <% end %>
       </ul>
     </div>
+</div>
   <% end %>
+<h1>Nueva Tesis</h1>
+
 <div class="CSS_Form">
   <div class="field">
     <strong><%= f.label :Tesis %></strong><br />

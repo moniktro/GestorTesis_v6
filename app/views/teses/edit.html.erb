@@ -1,10 +1,8 @@
-<h1>Modificar Tesis</h1>
-
-
 <%= form_for(@tese) do |f| %>
   <% if @tese.errors.any? %>
+    <div class ="error">
     <div id="error_explanation">
-      <h2><%= pluralize(@tese.errors.count, "error") %> prohibited this tese from being saved:</h2>
+      <h4><%= pluralize(@tese.errors.count, "error") %> modificando datos de la tesis:</h4>
 
       <ul>
       <% @tese.errors.full_messages.each do |msg| %>
@@ -12,7 +10,9 @@
       <% end %>
       </ul>
     </div>
+    </div>
   <% end %>
+<h1>Modificar Tesis</h1>
 <div class="CSS_Form">
   <div class="field">
     <strong><%= f.label :"Tesis*:" %></strong><br />
@@ -24,7 +24,7 @@
   </div>
   <div class="field">
     <strong><%= f.label :"Descripción:" %></strong><br />
-    <%= f.text_area :descripcionTesis,  {:class=>"text-input", :size=>"100", :max=>"600"}  %><br /><br />
+    <%= f.text_area :descripcionTesis,  {:class=>"text-input", :size=>"76x4", :max=>"600"}  %><br /><br />
   </div>
   <div class="field">
     <strong><%= f.label :"Fecha Inicio:" %></strong><br/>

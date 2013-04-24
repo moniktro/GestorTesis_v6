@@ -1,9 +1,8 @@
-<h1>Modificar compromiso</h1>
-<br/>
 <%= form_for(@compromiso) do |f| %>
   <% if @compromiso.errors.any? %>
+  <div class="error">
     <div id="error_explanation">
-      <h2><%= pluralize(@compromiso.errors.count, "error") %> no es posible grabar el compromiso:</h2>
+      <h4><%= pluralize(@compromiso.errors.count, "error") %> no es posible grabar el compromiso:</h4>
 
       <ul>
       <% @compromiso.errors.full_messages.each do |msg| %>
@@ -11,7 +10,23 @@
       <% end %>
       </ul>
     </div>
+  </div>
   <% end %>
+<%
+    @estudiantes = Estudiante.find_by_sql('SELECT E.codigoEstudiante,
+                                                  E.nombreEstudiante,
+                                                  E.tesis_id
+                                             FROM Estudiantes E
+                                                 ,Compromisos_Estudiantes EC
+                                                 ,Compromisos C
+                                            WHERE E.id = EC.Estudiante_id
+                                              AND C.id = EC.Compromiso_id
+                                              AND C.id = ' + params[:id])
+    @estudiantes.each do |t|
+      @tesis = Tese.find(t.tesis_id)
+    end
+%>
+<h1>Modificar compromiso</h1>
 <div class="CSS_Form">
   <strong><%= label_tag :Tesis %></strong><br/>
   <%= text_field(:tesis, :nombreTesis, :size => 70, :onfocus=>'blur();') %>

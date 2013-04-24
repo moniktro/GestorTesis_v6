@@ -1,3 +1,9 @@
+<% if notice != nil %>
+<div class="success">
+<h4><p id="notice"><%= notice %></p></h4>
+</div>
+<br/>
+<% end %>
 <h1>REUNIONES</h1>
 <br>
   <%= link_to 'Programar Reunion', new_reunion_path %>

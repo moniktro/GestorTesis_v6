@@ -63,18 +63,6 @@ class CompromisosController < ApplicationController
   # GET /compromisos/1/edit
   def edit
     @compromiso = Compromiso.find(params[:id])
-    @estudiantes = Estudiante.find_by_sql('SELECT E.codigoEstudiante,
-                                                  E.nombreEstudiante,
-                                                  E.tesis_id
-                                             FROM Estudiantes E
-                                                 ,Compromisos_Estudiantes EC
-                                                 ,Compromisos C
-                                            WHERE E.id = EC.Estudiante_id
-                                              AND C.id = EC.Compromiso_id
-                                              AND C.id = ' + params[:id])
-    @estudiantes.each do |t|
-      @tesis = Tese.find(t.tesis_id)
-    end
   end
 
   # POST /compromisos
@@ -123,7 +111,7 @@ class CompromisosController < ApplicationController
     @compromiso.destroy
 
     respond_to do |format|
-      format.html { redirect_to(compromisos_url) }
+      format.html { redirect_to(compromisos_url , notice: 'Compromiso eliminado exitosamente.') }
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,13 @@
   <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
+
+<% if notice != nil %>
+<div class="success">
+<h4><p id="notice"><%= notice %></p></h4>
+</div>
+<br/>
+<% end %>
+
 <h1>TESIS</h1>
 <br>
 <%= link_to 'Nueva Tesis', new_tese_path %>

@@ -1,4 +1,9 @@
-<p style="color: red"><%= notice %></p>
+
+<% if notice != nil %>
+<div class="success">
+<h4><p id="notice"><%= notice %></p></h4>
+</div>
+<% end %>
 
 <h1>COMPROMISOS</h1>
 <br/>

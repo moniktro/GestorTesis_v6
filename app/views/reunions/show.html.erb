@@ -1,6 +1,9 @@
-<p style="color: red"><%= notice %></p>
-<h3 align="center">CONSULTA REUNIÓN</h3>
-<br/>
+<% if notice != nil %>
+<div class="success">
+<h4><p id="notice"><%= notice %></p></h4>
+</div>
+<% end %>
+<h1>Consulta Reunión</h1>
 <div class="container">
 <div class="CSSTableGenerator">
 <table align="center" width="100%" border="1" cellspacing="0">

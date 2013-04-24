@@ -1,9 +1,8 @@
-<h1>Nueva Reunion</h1>
-<br/>
 <%= form_for(@reunion) do |f| %>
   <% if @reunion.errors.any? %>
+    <div class ="error">
     <div id="error_explanation">
-      <h2><%= pluralize(@reunion.errors.count, "error") %> prohibited this reunion from being saved:</h2>
+      <h4><%= pluralize(@reunion.errors.count, "error") %> grabando reunión:</h4>
 
       <ul>
       <% @reunion.errors.full_messages.each do |msg| %>
@@ -11,7 +10,9 @@
       <% end %>
       </ul>
     </div>
+    </div>
   <% end %>
+<h1>Nueva Reunion</h1>
 <div class="CSS_Form">
   <strong><%= label_tag :Tesis %></strong><br/>
 
@@ -52,6 +53,18 @@
     <strong><%= f.label :"Duración " %></strong><br />
     <%= f.time_select :duracion_reu %><br />
   </div>
+
+  <% @asistentes = Reunion.find_by_sql('SELECT P.Id
+                                               ,P.Nombre
+                                           FROM Profesors P
+                                               ,Teses T
+                                          WHERE P.Id = T.Profesor_Id
+                                            AND T.Id = ' + @tesis.id.to_s +
+                                        ' UNION ALL ' +
+                                        'SELECT E.Id
+                                               ,E.NombreEstudiante Nombre
+                                           FROM Estudiantes E
+                                          WHERE E.Tesis_Id = ' + @tesis.id.to_s ) %>
 
  <%  if @asistentes.any? %>
       <!--div class="field"-->

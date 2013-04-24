@@ -1,9 +1,8 @@
-<h1>Crear compromiso</h1>
-<br/>
 <%= form_for(@compromiso) do |f| %>
   <% if @compromiso.errors.any? %>
+    <div class="error">
     <div id="error_explanation">
-      <h2><%= pluralize(@compromiso.errors.count, "Error") %> no es posible grabar el compromiso:</h2>
+      <h4><%= pluralize(@compromiso.errors.count, "Error") %> grabando compromiso:</h4>
 
       <ul>
       <% @compromiso.errors.full_messages.each do |msg| %>
@@ -11,8 +10,9 @@
       <% end %>
       </ul>
     </div>
+    </div>
   <% end %>
-
+<h1>Crear compromiso</h1>
   <div class="CSS_Form">
   <strong><%= label_tag :Tesis %></strong><br/>
   

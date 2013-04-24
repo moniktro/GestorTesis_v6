@@ -47,7 +47,7 @@ class TesesController < ApplicationController
 
     respond_to do |format|
       if @tese.save
-        format.html { redirect_to @tese, notice: 'Tesis Creada Exitosamente' }
+        format.html { redirect_to @tese, notice: 'Tesis creada exitosamente' }
         format.json { render json: @tese, status: :created, location: @tese }
       else
         @profesor = Profesor.all
@@ -64,7 +64,7 @@ class TesesController < ApplicationController
 
     respond_to do |format|
       if @tese.update_attributes(params[:tese])
-        format.html { redirect_to @tese, notice: 'Tesis Actualizada Exitosamente' }
+        format.html { redirect_to @tese, notice: 'Tesis actualizada exitosamente' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,7 +80,7 @@ class TesesController < ApplicationController
     @tese.destroy
 
     respond_to do |format|
-      format.html { redirect_to teses_url }
+      format.html { redirect_to teses_url, notice: 'Tesis eliminada exitosamente' }
       format.json { head :no_content }
     end
   end

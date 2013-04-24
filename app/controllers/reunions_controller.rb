@@ -63,27 +63,7 @@ class ReunionsController < ApplicationController
   # GET /reunions/1/edit
   def edit
     @reunion = Reunion.find(params[:id])
-    @teses = Tese.find_by_sql('SELECT T.id
-                                     ,T.nombreTesis
-                                 FROM Reunions_Estudiantes RE
-                                     ,Estudiantes E
-                                     ,Teses T
-                                WHERE RE.estudiante_id = E.id
-                                  AND RE.reunion_id = ' + @reunion.id.to_s +
-                                ' AND T.id = E.tesis_id '  )
-    @tesis = @teses.first
     
-    @asistentes = Reunion.find_by_sql('SELECT P.Id
-                                               ,P.Nombre
-                                           FROM Profesors P
-                                               ,Teses T
-                                          WHERE P.Id = T.Profesor_Id
-                                            AND T.Id = ' + @tesis.id.to_s +
-                                        ' UNION ALL ' +
-                                        'SELECT E.Id
-                                               ,E.NombreEstudiante Nombre
-                                           FROM Estudiantes E
-                                          WHERE E.Tesis_Id = ' + @tesis.id.to_s )
   end
 
   # POST /reunions
@@ -116,7 +96,7 @@ class ReunionsController < ApplicationController
 
     respond_to do |format|
       if @reunion.update_attributes(params[:reunion])
-        format.html { redirect_to @reunion, notice: 'Reunion was successfully updated.' }
+        format.html { redirect_to @reunion, notice: 'Reunion actualizada exitosamente.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
