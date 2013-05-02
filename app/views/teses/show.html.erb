@@ -44,19 +44,19 @@
   <td>Profesor:</td>
   <td><%= @profesor.nombre %></td>
 </tr>
-<!--tr>
+
   <td>Estudiantes</td>
   <td>
-    <%# @estudiantes = Estudiante.find_by_sql('SELECT DISTINCT
+    <% @estudiantes = Estudiante.find_by_sql('SELECT DISTINCT
                                                   E.nombreEstudiante
                                              FROM Estudiantes E
                                             WHERE E.Tesis_id = ' + @tese.id.to_s) %>
-    <%# @estudiantes.each do |est| %>
-      <%#= est.nombreEstudiante %><br/>
-      <%#= est.nombreEstudiante %>
-    <%# end %>
+    <% @estudiantes.each do |est| %>
+      <%= est.nombreEstudiante %><br/>
+      <%= est.nombreEstudiante %>
+    <% end %>
   </td>
-</tr-->
+
 </table>
 </div>
 <br/>

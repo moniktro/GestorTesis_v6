@@ -1,5 +1,67 @@
-<h1>New estudiante</h1>
+<%= form_for(@estudiante) do |f| %>
+  <% if @estudiante.errors.any? %>
+    <div class="error">
+      <div id="error_explanation">
+        <h4><%= pluralize(@estudiante.errors.count, "Error") %> adicionando estudiante a tesis:</h4>
+        <ul>
+          <% @estudiante.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <h1>Agregar Estudiante a Tesis</h1>
+  <div class="CSS_Form">
+    <strong><%= label_tag :Tesis %></strong><br/>
 
-<%= render 'form' %>
+    <% if params[:tesisId].nil? %>
+      <div class="field">
 
-<%= link_to 'Back', estudiantes_path %>
+        <%= select_tag 'tesis_id',
+          options_from_collection_for_select(Tese.find(:all, :conditions => ["Finalizado = 0 OR Finalizado IS NULL"], :order => ["nombreTesis ASC"]), :id, :nombreTesis),
+          :size => 5,
+          :style => 'width:800px',
+          :onclick =>'javascript:location.href="' + new_estudiante_path + '?tesisId=" + this.value'
+      %>
+      </div>
+      <br/>
+      <div class="actions" style="clear:both">
+        <br/>
+        <%= link_to 'Regresar', teses_path %>
+      </div>
+    <% else %>
+      <%= text_field(:tesis, :nombreTesis, :size => 70, :onfocus=>'blur();') %>
+      <div class="field">
+        <br/>
+        <strong><%= f.label :Estudiante %></strong><br />
+        <%= f.text_field :nombreEstudiante, :size=> 70 %>
+      </div>
+      <div class="field">
+        <br/>
+        <strong><%= f.label :Codigo %></strong><br />
+        <%= f.text_field :codigoEstudiante, :size=> 20 %>
+      </div> 
+      <div class="field">
+        <br/>
+        <strong><%= f.label :Email %></strong><br />
+        <%= f.text_field :correoElectronico, :size=> 70 %>
+      </div>
+      <div class="field">
+        <br/>
+        <strong><%= f.label :"Disponibilidad Horaria" %></strong><br />
+        <%= f.text_field :disponibilidadHoraria, :size=> 100 %>
+      </div>
+      <div class="field">
+        <br/>
+         <%= f.hidden_field :tesis_id, :value => params[:tesisId]  %>
+      </div>
+      <br/>
+      <div class="actions" style="clear:both">
+        <br/>
+        <%= f.submit 'Guardar' %>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        <%= link_to 'Menu Tesis', teses_path %>
+      </div>
+    <% end %>
+  <%  end %>
+</div>

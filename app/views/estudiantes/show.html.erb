@@ -1,30 +1,32 @@
-<p id="notice"><%= notice %></p>
+<% if notice != nil %>
+<div class="success">
+<h4><p id="notice"><%= notice %></p></h4>
+</div>
+<% end %>
 
-<p>
-  <b>Nombreestudiante:</b>
-  <%= @estudiante.nombreEstudiante %>
-</p>
-
-<p>
-  <b>Codigoestudiante:</b>
-  <%= @estudiante.codigoEstudiante %>
-</p>
-
-<p>
-  <b>Correoelectronico:</b>
-  <%= @estudiante.correoElectronico %>
-</p>
-
-<p>
-  <b>Disponibilidadhoraria:</b>
-  <%= @estudiante.disponibilidadHoraria %>
-</p>
-
-<p>
-  <b>Tesis:</b>
-  <%= @estudiante.tesis_id %>
-</p>
+<div class="container">
+<div class="CSSTableGenerator">
+<table align="center" width="100%" border="1" cellspacing="0">
+  <tr>
+    <td>Estudiante:</td>
+    <td><%=h @estudiante.nombreEstudiante %></td>
+  </tr>
+  <tr>
+    <td>Codigo:</td>
+    <td><%=h @estudiante.codigoEstudiante %></td>
+  </tr>
+  <tr>
+    <td>Correo:</td>
+    <td><%=h @estudiante.correoElectronico %></td>
+  </tr>
+  <tr>
+    <td>"Disponibilidad Horaria:"</td>
+    <td><%=h @estudiante.disponibilidadHoraria %></td>
+  </tr>
 
 
-<%= link_to 'Edit', edit_estudiante_path(@estudiante) %> |
-<%= link_to 'Back', estudiantes_path %>
+</table>
+</div>
+</div>
+<br/>
+<%= link_to 'Menu Tesis', teses_path() %> |

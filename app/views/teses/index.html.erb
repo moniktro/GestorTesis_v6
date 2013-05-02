@@ -23,7 +23,7 @@
     <td width="5%"> Estado </td>
     <td width="10%"> Fecha Inicio </td>
     <td width="10%"> Fecha Fin </td>
-    <td width="30%" colspan="4"> Acciones </td>
+    <td width="30%" colspan="5"> Acciones </td>
   </tr>
 <% @teses.each do |tese| %>
   <tr>
@@ -42,10 +42,11 @@
         <%end%> </td>
     <td><%= tese.fechaInicio %></td>
     <td><%= tese.fechaFin %></td>
-    <td><%= link_to 'Modificar', edit_tese_path(tese) %></td>
-    <td><%= link_to 'Eliminar', tese, :method => :delete, data: { confirm: 'Esta seguro que desea eliminar la tesis ?' } %></td>
     <td><%= link_to 'Crear compromiso', new_compromiso_path + "?tesisId=#{tese.id}"%></td>
     <td><%= link_to 'Crear Reunion', new_reunion_path + "?tesisId=#{tese.id}" %></td>
+    <td><%= link_to 'Agregar Estudiante', new_estudiante_path + "?tesisId=#{tese.id}"%></td>
+    <td><%= link_to 'Modificar', edit_tese_path(tese) %></td>
+    <td><%= link_to 'Eliminar', tese, :method => :delete, data: { confirm: 'Esta seguro que desea eliminar la tesis ?' } %></td>
   </tr>
 <% end %>
 </table>
