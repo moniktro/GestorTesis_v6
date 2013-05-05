@@ -1,0 +1,13 @@
+<!--h1 align="center">Asignación de Compromiso</h1-->
+<!--img src="<%#= Rails.root + "/app/assets/stylesheets/images/css/page-bg.jpg" %>"></img-->
+<% i = @estudiante.nombreEstudiante.index ' ' %>
+<p>Apreciado(a) <%= @estudiante.nombreEstudiante[0..i-1] %>,</p>
+<p>&nbsp;</p>
+<p>Usted ha sido asignado como responsable de dar cumplimiento a un nuevo compromiso cuya información básica es la siguiente:</p>
+<p>&nbsp;</p>
+<p><strong>Asunto:</strong><%=  @compromiso.asunto %></p>
+<p><strong>Descripción:</strong> <%=  @compromiso.descripcionCompromiso %></p>
+<p><strong>Fecha límite de entrega:</strong> <%=  @compromiso.fechaLimite %></p>
+<p>&nbsp;</p>
+<p>Este correo ha sido generado automáticamente por la aplicación de gestión de tesis, por lo tanto, no debe responder al mismo.</p>
+<h3><strong>Gestor Tesis</strong></h3>

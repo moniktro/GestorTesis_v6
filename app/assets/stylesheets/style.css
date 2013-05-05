@@ -434,3 +434,5 @@ h4 { margin:5px 5px 5px 80px;padding:0; font-size:16px; }
 .download{border:1px solid #04b5eb;color:#04b5eb;background:#f7f7f7 url('images/download.png') no-repeat; background-position:30px 20px;}
 .purchase{border:1px solid #426164;color:#426164;background:#c2e1e3 url('images/purchase.png') no-repeat; background-position:30px 20px;}
 .print{border:1px solid #3c4b5e;color:#3c4b5e;background:#c8d9e3 url('images/print.png') no-repeat; background-position:30px 20px;}
+
+content { width: 600px; }

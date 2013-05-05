@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413170743) do
+ActiveRecord::Schema.define(:version => 20130426104248) do
 
   create_table "compromisos", :force => true do |t|
     t.string   "asunto"
     t.string   "descripcionCompromiso"
     t.date     "fechaLimite"
-    t.boolean  "finalizado", :default => false
+    t.boolean  "finalizado"
     t.integer  "estudiantes_id"
     t.integer  "profesors_id"
     t.integer  "teses_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130413170743) do
   create_table "compromisos_estudiantes", :id => false, :force => true do |t|
     t.integer  "compromiso_id"
     t.integer  "estudiante_id"
-    t.boolean  "finalizado", :default => false
+    t.boolean  "finalizado"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(:version => 20130413170743) do
     t.integer  "tesis_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "calendar_id"
+    t.string   "title"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "profesors", :force => true do |t|

@@ -1,0 +1,210 @@
+Connecting to database specified by database.yml
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 12:48:25 -0500
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/compromisos/new?tesisId=1" for 127.0.0.1 at 2013-04-17 16:10:58 -0500
+Connecting to database specified by database.yml
+Started GET "/compromisos/new?tesisId=1" for 127.0.0.1 at 2013-04-17 16:12:05 -0500
+Connecting to database specified by database.yml
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:17:51 -0500
+Connecting to database specified by database.yml
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:20:32 -0500
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:21:46 -0500
+Processing by TesesController#new as HTML
+  Rendered teses/new.html.erb within layouts/teses (71.0ms)
+Completed 200 OK in 333ms (Views: 184.0ms | ActiveRecord: 22.0ms)
+Started POST "/teses" for 127.0.0.1 at 2013-04-17 19:21:47 -0500
+Processing by TesesController#create as HTML
+  Parameters: {"utf8"=>"✓", "tese"=>{"nombreTesis"=>"Ejemplo de tesis", "areaInvestigacion"=>"area de ivestigacion 1", "descripcionTesis"=>"Ejemplo de descripcion de tesis", "fechaInicio(3i)"=>"22", "fechaInicio(2i)"=>"4", "fechaInicio(1i)"=>"2013", "fechaFin(3i)"=>"22", "fechaFin(2i)"=>"7", "fechaFin(1i)"=>"2013", "finalizado"=>"0", "profesor_id"=>""}, "commit"=>"Guardar"}
+  [1m[35m (1.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mTese Exists (4.0ms)[0m  [1mSELECT 1 AS one FROM `teses` WHERE `teses`.`nombreTesis` = BINARY 'Ejemplo de tesis' LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO `teses` (`areaInvestigacion`, `created_at`, `descripcionTesis`, `fechaFin`, `fechaInicio`, `finalizado`, `nombreTesis`, `profesor_id`, `updated_at`) VALUES ('area de ivestigacion 1', '2013-04-18 00:21:47', 'Ejemplo de descripcion de tesis', '2013-07-22', '2013-04-22', 0, 'Ejemplo de tesis', NULL, '2013-04-18 00:21:47')
+  [1m[36m (1.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://localhost:3000/teses/1
+Completed 302 Found in 181ms (ActiveRecord: 8.0ms)
+Started GET "/teses/1" for 127.0.0.1 at 2013-04-17 19:21:47 -0500
+Processing by TesesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTese Load (1.0ms)[0m  SELECT `teses`.* FROM `teses` WHERE `teses`.`id` = 1 LIMIT 1
+  Rendered teses/show.html.erb within layouts/teses (5.0ms)
+Completed 200 OK in 32ms (Views: 26.0ms | ActiveRecord: 1.0ms)
+  [1m[36mTese Load (1.0ms)[0m  [1mSELECT `teses`.* FROM `teses` WHERE `teses`.`nombreTesis` = 'Ejemplo de tesis' LIMIT 1[0m
+  [1m[35m (9.0ms)[0m  ROLLBACK
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:21:47 -0500
+Processing by TesesController#new as HTML
+  Rendered teses/new.html.erb within layouts/teses (19.0ms)
+Completed 200 OK in 22ms (Views: 22.0ms | ActiveRecord: 0.0ms)
+Started POST "/teses" for 127.0.0.1 at 2013-04-17 19:21:47 -0500
+Processing by TesesController#create as HTML
+  Parameters: {"utf8"=>"✓", "tese"=>{"nombreTesis"=>"Ejemplo de tesis", "areaInvestigacion"=>"area de ivestigacion 1", "descripcionTesis"=>"Ejemplo de descripcion de tesis", "fechaInicio(3i)"=>"22", "fechaInicio(2i)"=>"4", "fechaInicio(1i)"=>"2013", "fechaFin(3i)"=>"22", "fechaFin(2i)"=>"7", "fechaFin(1i)"=>"2013", "finalizado"=>"0", "profesor_id"=>""}, "commit"=>"Guardar"}
+  [1m[35m (1.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mTese Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM `teses` WHERE `teses`.`nombreTesis` = BINARY 'Ejemplo de tesis' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `teses` (`areaInvestigacion`, `created_at`, `descripcionTesis`, `fechaFin`, `fechaInicio`, `finalizado`, `nombreTesis`, `profesor_id`, `updated_at`) VALUES ('area de ivestigacion 1', '2013-04-18 00:21:47', 'Ejemplo de descripcion de tesis', '2013-07-22', '2013-04-22', 0, 'Ejemplo de tesis', NULL, '2013-04-18 00:21:47')
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://localhost:3000/teses/2
+Completed 302 Found in 14ms (ActiveRecord: 3.0ms)
+Started GET "/teses/2" for 127.0.0.1 at 2013-04-17 19:21:47 -0500
+Processing by TesesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTese Load (1.0ms)[0m  SELECT `teses`.* FROM `teses` WHERE `teses`.`id` = 2 LIMIT 1
+  Rendered teses/show.html.erb within layouts/teses (2.0ms)
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 1.0ms)
+  [1m[36mTese Load (1.0ms)[0m  [1mSELECT `teses`.* FROM `teses` WHERE `teses`.`nombreTesis` = 'Ejemplo de tesis'[0m
+  [1m[35m (4.0ms)[0m  ROLLBACK
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:21:47 -0500
+Processing by TesesController#new as HTML
+  Rendered teses/new.html.erb within layouts/teses (20.0ms)
+Completed 200 OK in 24ms (Views: 24.0ms | ActiveRecord: 0.0ms)
+Started POST "/teses" for 127.0.0.1 at 2013-04-17 19:21:47 -0500
+Processing by TesesController#create as HTML
+  Parameters: {"utf8"=>"✓", "tese"=>{"nombreTesis"=>"", "areaInvestigacion"=>"area de ivestigacion 1", "descripcionTesis"=>"Ejemplo de descripcion de tesis", "fechaInicio(3i)"=>"22", "fechaInicio(2i)"=>"4", "fechaInicio(1i)"=>"2013", "fechaFin(3i)"=>"22", "fechaFin(2i)"=>"7", "fechaFin(1i)"=>"2013", "finalizado"=>"0", "profesor_id"=>""}, "commit"=>"Guardar"}
+  [1m[35m (1.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mTese Exists (2.0ms)[0m  [1mSELECT 1 AS one FROM `teses` WHERE `teses`.`nombreTesis` = BINARY '' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered teses/new.html.erb within layouts/teses (22.0ms)
+Completed 200 OK in 38ms (Views: 27.0ms | ActiveRecord: 3.0ms)
+  [1m[36mTese Load (1.0ms)[0m  [1mSELECT `teses`.* FROM `teses` WHERE `teses`.`nombreTesis` = ''[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:21:48 -0500
+Processing by TesesController#new as HTML
+  Rendered teses/new.html.erb within layouts/teses (18.0ms)
+Completed 200 OK in 23ms (Views: 22.0ms | ActiveRecord: 0.0ms)
+Started POST "/teses" for 127.0.0.1 at 2013-04-17 19:21:48 -0500
+Processing by TesesController#create as HTML
+  Parameters: {"utf8"=>"✓", "tese"=>{"nombreTesis"=>" ", "areaInvestigacion"=>"area de ivestigacion 1", "descripcionTesis"=>"Ejemplo de descripcion de tesis", "fechaInicio(3i)"=>"22", "fechaInicio(2i)"=>"4", "fechaInicio(1i)"=>"2013", "fechaFin(3i)"=>"22", "fechaFin(2i)"=>"7", "fechaFin(1i)"=>"2013", "finalizado"=>"0", "profesor_id"=>""}, "commit"=>"Guardar"}
+  [1m[35m (1.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mTese Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM `teses` WHERE `teses`.`nombreTesis` = BINARY ' ' LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered teses/new.html.erb within layouts/teses (21.0ms)
+Completed 200 OK in 34ms (Views: 25.0ms | ActiveRecord: 3.0ms)
+  [1m[36mTese Load (1.0ms)[0m  [1mSELECT `teses`.* FROM `teses` WHERE `teses`.`nombreTesis` = ' '[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:21:48 -0500
+Processing by TesesController#new as HTML
+  Rendered teses/new.html.erb within layouts/teses (20.0ms)
+Completed 200 OK in 75ms (Views: 74.0ms | ActiveRecord: 0.0ms)
+Started POST "/teses" for 127.0.0.1 at 2013-04-17 19:21:48 -0500
+Processing by TesesController#create as HTML
+  Parameters: {"utf8"=>"✓", "tese"=>{"nombreTesis"=>"nombrePrueba1", "areaInvestigacion"=>"", "descripcionTesis"=>"Ejemplo de descripcion de tesis", "fechaInicio(3i)"=>"22", "fechaInicio(2i)"=>"4", "fechaInicio(1i)"=>"2013", "fechaFin(3i)"=>"22", "fechaFin(2i)"=>"7", "fechaFin(1i)"=>"2013", "finalizado"=>"0", "profesor_id"=>""}, "commit"=>"Guardar"}
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mTese Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM `teses` WHERE `teses`.`nombreTesis` = BINARY 'nombrePrueba1' LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered teses/new.html.erb within layouts/teses (21.0ms)
+Completed 200 OK in 36ms (Views: 25.0ms | ActiveRecord: 2.0ms)
+  [1m[36mTese Load (2.0ms)[0m  [1mSELECT `teses`.* FROM `teses` WHERE `teses`.`nombreTesis` = 'nombrePrueba1'[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+Started GET "/teses/new" for 127.0.0.1 at 2013-04-17 19:21:48 -0500
+Processing by TesesController#new as HTML
+  Rendered teses/new.html.erb within layouts/teses (22.0ms)
+Completed 200 OK in 28ms (Views: 27.0ms | ActiveRecord: 0.0ms)
+Started POST "/teses" for 127.0.0.1 at 2013-04-17 19:21:48 -0500
+Processing by TesesController#create as HTML
+  Parameters: {"utf8"=>"✓", "tese"=>{"nombreTesis"=>"nombrePrueba2", "areaInvestigacion"=>" ", "descripcionTesis"=>"Ejemplo de descripcion de tesis", "fechaInicio(3i)"=>"22", "fechaInicio(2i)"=>"4", "fechaInicio(1i)"=>"2013", "fechaFin(3i)"=>"22", "fechaFin(2i)"=>"7", "fechaFin(1i)"=>"2013", "finalizado"=>"0", "profesor_id"=>""}, "commit"=>"Guardar"}
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mTese Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM `teses` WHERE `teses`.`nombreTesis` = BINARY 'nombrePrueba2' LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered teses/new.html.erb within layouts/teses (21.0ms)
+Completed 200 OK in 35ms (Views: 25.0ms | ActiveRecord: 2.0ms)
+  [1m[36mTese Load (1.0ms)[0m  [1mSELECT `teses`.* FROM `teses` WHERE `teses`.`nombreTesis` = 'nombrePrueba2'[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/compromisos/new" for 127.0.0.1 at 2013-04-17 19:22:25 -0500
+Processing by CompromisosController#new as HTML
+  [1m[35mEstudiante Load (4.0ms)[0m  SELECT `estudiantes`.* FROM `estudiantes` WHERE `estudiantes`.`tesis_id` IS NULL
+Completed 404 Not Found in 211ms
+  [1m[36m (1.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:22:55 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (73.0ms)
+Completed 200 OK in 318ms (Views: 179.0ms | ActiveRecord: 24.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:22:56 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (25.0ms)
+Completed 200 OK in 30ms (Views: 29.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:26:50 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (122.0ms)
+Completed 200 OK in 599ms (Views: 310.0ms | ActiveRecord: 33.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:26:51 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (50.0ms)
+Completed 200 OK in 57ms (Views: 56.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:35:47 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (66.0ms)
+Completed 200 OK in 329ms (Views: 176.0ms | ActiveRecord: 26.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:35:48 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (26.0ms)
+Completed 200 OK in 30ms (Views: 30.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:38:17 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (64.0ms)
+Completed 200 OK in 305ms (Views: 166.0ms | ActiveRecord: 20.0ms)
+Started POST "/reunions" for 127.0.0.1 at 2013-04-17 19:38:18 -0500
+Processing by ReunionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "reunion"=>{"asunto_reu"=>"nombre ejemplo 1", "fecha_reu(3i)"=>"17", "fecha_reu(2i)"=>"4", "fecha_reu(1i)"=>"2013", "fecha_reu(4i)"=>"15", "fecha_reu(5i)"=>"30", "duracion_reu(1i)"=>"2013", "duracion_reu(2i)"=>"4", "duracion_reu(3i)"=>"18", "duracion_reu(4i)"=>"03", "duracion_reu(5i)"=>"00", "lugar"=>"ML-508", "estudiantes_id"=>"Laura Riveros", "profesors_id"=>"Darío Correal", "teses_id"=>""}, "commit"=>"Guardar"}
+  [1m[35m (1.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO `reunions` (`asunto_reu`, `created_at`, `duracion_reu`, `estudiantes_id`, `fecha_reu`, `lugar`, `profesors_id`, `teses_id`, `updated_at`) VALUES ('nombre ejemplo 1', '2013-04-18 00:38:18', '2013-04-18 03:00:00', 0, '2013-04-17 15:30:00', 'ML-508', 0, NULL, '2013-04-18 00:38:18')[0m
+  [1m[35m (1.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://localhost:3000/reunions/1
+Completed 302 Found in 32ms (ActiveRecord: 3.0ms)
+Started GET "/reunions/1" for 127.0.0.1 at 2013-04-17 19:38:18 -0500
+Processing by ReunionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mReunion Load (2.0ms)[0m  [1mSELECT `reunions`.* FROM `reunions` WHERE `reunions`.`id` = 1 LIMIT 1[0m
+  [1m[35mEstudiante Load (1.0ms)[0m  SELECT `estudiantes`.* FROM `estudiantes` WHERE (id = 0)
+  Rendered reunions/show.html.erb within layouts/reunions (57.0ms)
+Completed 500 Internal Server Error in 85ms
+  [1m[36m (7.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+Started GET "/reunions/new" for 127.0.0.1 at 2013-04-17 19:38:18 -0500
+Processing by ReunionsController#new as HTML
+  Rendered reunions/new.html.erb within layouts/reunions (23.0ms)
+Completed 200 OK in 28ms (Views: 27.0ms | ActiveRecord: 0.0ms)
+Started POST "/reunions" for 127.0.0.1 at 2013-04-17 19:38:18 -0500
+Processing by ReunionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "reunion"=>{"asunto_reu"=>"nombre ejemplo 1", "fecha_reu(3i)"=>"17", "fecha_reu(2i)"=>"4", "fecha_reu(1i)"=>"2013", "fecha_reu(4i)"=>"15", "fecha_reu(5i)"=>"30", "duracion_reu(1i)"=>"2013", "duracion_reu(2i)"=>"4", "duracion_reu(3i)"=>"18", "duracion_reu(4i)"=>"03", "duracion_reu(5i)"=>"00", "lugar"=>"ML-508", "estudiantes_id"=>"Laura Riveros", "profesors_id"=>"Darío Correal", "teses_id"=>""}, "commit"=>"Guardar"}
+  [1m[36m (1.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `reunions` (`asunto_reu`, `created_at`, `duracion_reu`, `estudiantes_id`, `fecha_reu`, `lugar`, `profesors_id`, `teses_id`, `updated_at`) VALUES ('nombre ejemplo 1', '2013-04-18 00:38:18', '2013-04-18 03:00:00', 0, '2013-04-17 15:30:00', 'ML-508', 0, NULL, '2013-04-18 00:38:18')
+  [1m[36m (1.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://localhost:3000/reunions/2
+Completed 302 Found in 11ms (ActiveRecord: 3.0ms)
+Started GET "/reunions/2" for 127.0.0.1 at 2013-04-17 19:38:18 -0500
+Processing by ReunionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mReunion Load (2.0ms)[0m  SELECT `reunions`.* FROM `reunions` WHERE `reunions`.`id` = 2 LIMIT 1
+  [1m[36mEstudiante Load (1.0ms)[0m  [1mSELECT `estudiantes`.* FROM `estudiantes` WHERE (id = 0)[0m
+  Rendered reunions/show.html.erb within layouts/reunions (9.0ms)
+Completed 500 Internal Server Error in 15ms
+  [1m[35m (4.0ms)[0m  ROLLBACK

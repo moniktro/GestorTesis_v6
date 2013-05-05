@@ -1,3 +1,0 @@
-class CompromisoController < ApplicationController
- 
-end

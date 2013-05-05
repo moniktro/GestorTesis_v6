@@ -73,17 +73,27 @@ class CompromisosController < ApplicationController
     estudiante_ids = params[:estudiante_ids]
 
     respond_to do |format|
-      if @compromiso.save
-        estudiante_ids.each do |i|
-            @comp_est = CompromisosEstudiantes.new(:compromiso_id => @compromiso.id, :estudiante_id => i, :finalizado => 0)
-            @comp_est.save
-        end
+      unless estudiante_ids.nil? then
+        if @compromiso.save
+          estudiante_ids.each do |i|
+              @comp_est = CompromisosEstudiantes.new(:compromiso_id => @compromiso.id, :estudiante_id => i, :finalizado => 0)
+              @comp_est.save
+              estudiante = Estudiante.find(i)
+              UserMailer.notificar_compromiso(estudiante, @compromiso).deliver
+          end
 
-        format.html { redirect_to @compromiso, notice: 'Compromiso creado y asignado exitosamente.' }
-        format.json { render json: @compromiso, status: :created, location: @compromiso }
+
+
+          format.html { redirect_to @compromiso, notice: 'Compromiso creado y asignado exitosamente.' }
+          format.json { render json: @compromiso, status: :created, location: @compromiso }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @compromiso.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render action: "new" }
-        format.json { render json: @compromiso.errors, status: :unprocessable_entity }
+          @compromiso.errors[:estudiante_ids] = "Asigne al menos un responsable del compromiso"
+          format.html { render action: "new" }
+          format.json { render json: @compromiso.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -92,9 +102,26 @@ class CompromisosController < ApplicationController
   # PUT /compromisos/1.json
   def update
     @compromiso = Compromiso.find(params[:id])
+    @compromisoAnt = Compromiso.find(params[:id]) #para notificacion de correo
+    @estudiantes = Estudiante.find_by_sql('SELECT E.codigoEstudiante,
+                                                  E.nombreEstudiante,
+                                                  E.correoElectronico,
+                                                  E.tesis_id
+                                             FROM Estudiantes E
+                                                 ,Compromisos_Estudiantes EC
+                                                 ,Compromisos C
+                                            WHERE E.id = EC.Estudiante_id
+                                              AND C.id = EC.Compromiso_id
+                                              AND C.id = ' + @compromiso.id.to_s)
 
     respond_to do |format|
       if @compromiso.update_attributes(params[:compromiso])
+
+        #notificación por correo
+        @estudiantes.each do |est|
+          UserMailer.actualizar_compromiso(est, @compromisoAnt, @compromiso).deliver
+        end
+
         format.html { redirect_to @compromiso, notice: 'Compromiso actualizado exitosamente.' }
         format.json { head :no_content }
       else
@@ -108,6 +135,20 @@ class CompromisosController < ApplicationController
   # DELETE /obligacions/1.json
   def destroy
     @compromiso = Compromiso.find(params[:id])
+    @estudiantes = Estudiante.find_by_sql('SELECT E.codigoEstudiante,
+                                                  E.nombreEstudiante,
+                                                  E.correoElectronico,
+                                                  E.tesis_id
+                                             FROM Estudiantes E
+                                                 ,Compromisos_Estudiantes EC
+                                                 ,Compromisos C
+                                            WHERE E.id = EC.Estudiante_id
+                                              AND C.id = EC.Compromiso_id
+                                              AND C.id = ' + @compromiso.id.to_s)
+    @estudiantes.each do |est|
+      UserMailer.cancelar_compromiso(est, @compromiso).deliver
+    end
+    
     @compromiso.destroy
 
     respond_to do |format|

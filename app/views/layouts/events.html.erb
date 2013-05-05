@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Agenda: <%= controller.action_name %></title>
+    
+    <%= stylesheet_link_tag 'style', 'fullcalendar', 'fullcalendar.print' %>
+    <%= javascript_include_tag 'jquery-1.9.1.min', 'jquery-ui-1.10.2.custom.min', 'fullcalendar', 'fullcalendar.min', 'gcal' %>
+    
+    <%#= javascript_include_tag :all %>
+
+    <%#= javascript_include_tag "application"%>
+    
+    <%= csrf_meta_tag %>
+
+    <script>
+
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: true,
+			events: [
+				                              
+                                <% for evento in @eventos = Compromiso.all %>
+                                 {
+                                   title: '>> <%= evento.asunto %>',
+                                   start: '<%= evento.fechaLimite.iso8601 %>',
+                                   end: '<%= evento.fechaLimite.iso8601 %>',
+                                   url: '<%= compromisos_path + "/" + evento.id.to_s %>',
+                                   allDay:false
+                                 },
+                               <% end %>
+
+                                <% for reunion in @eventos = Reunion.all %>
+                                 {
+                                   title: '<%= reunion.asunto_reu %>',
+                                   start: '<%= reunion.fecha_reu.iso8601 %>',
+                                   end: '<%= reunion.fecha_reu.iso8601 %>',
+                                   url: '<%= reunions_path + "/" + evento.id.to_s %>',
+                                   allDay:false
+                                 },
+                               <% end %>
+
+			]
+		});
+		
+	});
+
+</script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="bg">
+        <div id="header"></div>
+        <div id="page">
+          <div id="container">
+            <!-- banner -->
+            <div id="banner"></div>
+            <!-- end banner -->
+            <!-- horizontal navigation -->
+            <div id="nav1">
+              <ul>
+                <li>
+                  <%= link_to 'TESIS', teses_path %>
+                </li>
+                <li>
+                  <%= link_to 'REUNIONES', reunions_path %>
+                </li>
+                <li>
+                  <%= link_to 'COMPROMISOS', compromisos_path %>
+                </li>
+                <li id="current" style="border:none">
+                  <%= link_to 'AGENDA', events_path %>
+                </li>
+              </ul>
+            </div>
+            <!-- end horizontal navigation -->
+            <!--  content -->
+            <div id="content">
+
+              <div id="center">
+                <%= yield %>
+
+              </div>
+              </div>
+              <div class="clear" style="height:20px"></div>
+            </div>
+            <!-- end content -->
+          </div>
+          <!-- end container -->
+        </div>
+        <div id="footerWrapper">
+          <div id="footer">
+            <p style="padding-top:10px">
+              <!--
+DO NOT REMOVE OR MODIFY THE FOOTER LINK BELOW.
+If you want to remove this link please make a 10 dollars donation at www.dotemplate.com
+-->
+              <a href="http://uniandes.edu.co/" shape="rect">Universidad de Los Andes</a>
+            </p>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>

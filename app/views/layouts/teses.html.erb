@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
-    <title>Teses: <%= controller.action_name %></title> <%= stylesheet_link_tag 'style' %>
+    <title>Tesis: <%= controller.action_name %></title> <%= stylesheet_link_tag 'style' %>
     <link id="theme" rel="stylesheet" type="text/css" href="style.css" title="theme" />
     <%= javascript_include_tag :all %>
     <%= javascript_include_tag "application" %>
@@ -28,6 +28,9 @@
                 </li>
                 <li>
                   <%= link_to 'COMPROMISOS', compromisos_path %>
+                </li>
+                <li>
+                  <%= link_to 'AGENDA', events_path %>
                 </li>
               </ul>
             </div>

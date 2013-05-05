@@ -1,0 +1,23 @@
+<!--h1 align="center">Asignación de Compromiso</h1-->
+<!--img src="<%#= Rails.root + "/app/assets/stylesheets/images/css/page-bg.jpg" %>"></img-->
+<% i = @estudiante.nombreEstudiante.index ' ' %>
+<p>Apreciado(a) <%= @estudiante.nombreEstudiante[0..i-1] %>,</p>
+<p>&nbsp;</p>
+<p>El siguiente compromiso ha sido actualizado:</p>
+<p>&nbsp;</p>
+<p><strong>Asunto:</strong><%=  @compromisoNvo.asunto%>
+    <% if @compromisoAnt.asunto != @compromisoNvo.asunto %>
+      <span style="text-decoration: line-through;">&nbsp; <%= @compromisoAnt.asunto %></span>
+    <% end %>
+</p>
+<p><strong>Descripción:</strong> <%=  @compromisoNvo.descripcionCompromiso %></p>
+    <% if @compromisoAnt.descripcionCompromiso != @compromisoNvo.descripcionCompromiso %>
+      <span style="text-decoration: line-through;">&nbsp; <%= @compromisoAnt.descripcionCompromiso %></span>
+    <% end %>
+<p><strong>Fecha límite de entrega:</strong> <%=  @compromisoNvo.fechaLimite %></p>
+    <% if @compromisoAnt.fechaLimite != @compromisoNvo.fechaLimite %>
+      <span style="text-decoration: line-through;">&nbsp; <%= @compromisoAnt.fechaLimite %></span>
+    <% end %>
+<p>&nbsp;</p>
+<p>Este correo ha sido generado automáticamente por la aplicación de gestión de tesis, por lo tanto, no debe responder al mismo.</p>
+<h3><strong>Gestor Tesis</strong></h3>

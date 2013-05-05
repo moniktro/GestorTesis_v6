@@ -1,0 +1,14 @@
+<!--h1 align="center">Asignación de Compromiso</h1-->
+<!--img src="<%#= Rails.root + "/app/assets/stylesheets/images/css/page-bg.jpg" %>"></img-->
+<% i = @asistente[:nombre].index ' ' %>
+<p>Apreciado(a) <%= @asistente[:nombre][0..i-1] %>,</p>
+<p>&nbsp;</p>
+<p>Usted ha sido invitado a participar en la siguiente reunión:</p>
+<p>&nbsp;</p>
+<p><strong>Asunto:</strong><%=  @reunion.asunto_reu %></p>
+<p><strong>Lugar:</strong> <%=  @reunion.lugar %></p>
+<p><strong>Fecha y hora:</strong> <%=  @reunion.fecha_reu.strftime("%d-%b-%Y [ %I:%M %p ]") %></p>
+<p><strong>Duración:</strong> <%=  @reunion.duracion_reu.strftime("%I:%M ( hh:mi )") %></p>
+<p>&nbsp;</p>
+<p>Este correo ha sido generado automáticamente por la aplicación de gestión de tesis, por lo tanto, no debe responder al mismo.</p>
+<h3><strong>Gestor Tesis</strong></h3>
